@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Character {
 
 	
-	String name;
+	String names;
 	int health;
 	ArrayList<Object> inventory;
 	
