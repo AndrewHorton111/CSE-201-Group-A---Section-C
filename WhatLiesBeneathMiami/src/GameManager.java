@@ -1,9 +1,13 @@
+
 /**
- * 
+ * Class: CSE 201
+ * @author 
+ * @version 1.0
  */
 
 /**
- * 
+ * This is the master class that has all of the main method
+ * and everything needed to run the UI.
  */
 public class GameManager {
 
