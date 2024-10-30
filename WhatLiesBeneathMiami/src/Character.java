@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Character {
 
+	String Test;
 	String name;
 	int health;
 	ArrayList<Object> inventory;
