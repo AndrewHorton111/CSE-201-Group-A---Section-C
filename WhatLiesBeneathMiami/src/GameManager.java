@@ -1,9 +1,18 @@
+
 /**
- * 
+ * Class: CSE 201
+ * @author 
+ * @version 1.0
  */
 
 /**
- * 
+<<<<<<< HEAD
+ * This is the master class that has all of the main method
+ * and everything needed to run the UI.
+=======
+ * testing123
+ * supp
+>>>>>>> branch 'master' of https://github.com/AndrewHorton111/CSE-201-Group-A---Section-C.git
  */
 public class GameManager {
 
@@ -15,7 +24,6 @@ public class GameManager {
 		// game
 
 	}
-	
 	public void setHealth() {
 		System.out.print(false);
 	}

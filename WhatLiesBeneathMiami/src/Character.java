@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 public class Character {
@@ -31,4 +32,15 @@ public class Character {
 	}
 	
 	
+=======
+/**
+ * 
+ */
+
+/**
+ * 
+ */
+public class Character {
+
+>>>>>>> branch 'master' of https://github.com/AndrewHorton111/CSE-201-Group-A---Section-C.git
 }
