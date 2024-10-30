@@ -14,5 +14,9 @@ public class GameManager {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void setHealth() {
+		System.out.print(false);
+	}
 
 }
