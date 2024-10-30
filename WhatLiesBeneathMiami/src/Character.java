@@ -26,7 +26,7 @@ public class Character {
 	}
 	
 	public ArrayList<Object> getInventory() {
-		ArrayList<Integer> list = new ArrayList<>();
+		ArrayList<Object> list = new ArrayList<>();
 		return list;
 	}
 	
