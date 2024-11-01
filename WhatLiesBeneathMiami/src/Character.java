@@ -1,14 +1,36 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/AndrewHorton111/CSE-201-Group-A---Section-C.git
+/**
+ * Class: CSE 201
+ * @author Andrew Horton
+ * @author Koray Bayram
+ * @version 1.0
+ */
+
 import java.util.ArrayList;
 
+/**
+ * This class is the parent class of Player and Enemy. It holds the
+ * name, health, and inventory for both of these classes.
+ */
 public class Character {
 
 	String name;
 	int health;
 	ArrayList<Item> inventory;
+	
+	/**
+	 * Constructor for the Character class.
+	 * 
+	 * @param name
+	 * @param health
+	 * @param inventory
+	 */
+	public Character(String name, int health, ArrayList<Item> inventory) {
+		super();
+		this.name = name;
+		this.health = health;
+		this.inventory = inventory;
+	}
 	
 	/**
 	* Method to get the name of the character
@@ -55,16 +77,7 @@ public class Character {
 	* @return inventory
 	*/
 	public ArrayList<Object> getInventory() {
-<<<<<<< HEAD
-		ArrayList<Object> list = new ArrayList<>();
-		return list;
-	}
-	
-	
-
-=======
 		ArrayList<Object> inventory = new ArrayList<>();
 		return inventory;
 	}	
->>>>>>> branch 'master' of https://github.com/AndrewHorton111/CSE-201-Group-A---Section-C.git
 }
