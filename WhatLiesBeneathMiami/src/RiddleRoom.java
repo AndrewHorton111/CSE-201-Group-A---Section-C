@@ -1,3 +1,9 @@
+/**
+ * Class: CSE 201
+ * @author Joe Follarth
+ * @version 1.0
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
