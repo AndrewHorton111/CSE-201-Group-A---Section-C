@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/AndrewHorton111/CSE-201-Group-A---Section-C.git
 import java.util.ArrayList;
 
 public class Character {
@@ -55,16 +52,9 @@ public class Character {
 	* @return inventory
 	*/
 	public ArrayList<Object> getInventory() {
-<<<<<<< HEAD
+
 		ArrayList<Object> list = new ArrayList<>();
 		return list;
 	}
 	
-	
-
-=======
-		ArrayList<Object> inventory = new ArrayList<>();
-		return inventory;
-	}	
->>>>>>> branch 'master' of https://github.com/AndrewHorton111/CSE-201-Group-A---Section-C.git
 }
