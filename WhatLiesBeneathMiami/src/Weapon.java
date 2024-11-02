@@ -4,8 +4,6 @@
  * @version 1.0
  */
 
-import java.util.ArrayList;
-
 /**
  * This class is the child class of Item and it holds has the information
  * needed to deal damage to another Character. 

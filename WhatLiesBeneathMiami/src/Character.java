@@ -76,8 +76,8 @@ public class Character {
 	*
 	* @return inventory
 	*/
-	public ArrayList<Object> getInventory() {
-		ArrayList<Object> inventory = new ArrayList<>();
+	public ArrayList<Item> getInventory() {
+		System.out.println(inventory);
 		return inventory;
 	}	
 }

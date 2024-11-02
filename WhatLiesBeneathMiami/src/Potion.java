@@ -29,4 +29,33 @@ public class Potion extends Item {
 		this.effectPower = effectPower;
 		this.amount = amount;
 	}
+	
+	
+	/**
+	* Method to get the number of Potions of this kind in the Player's inventory
+	*
+	* @return amount
+	*/
+	public int getAmount() {
+		
+		return amount;
+	}
+	
+	/**
+	* Method to set the number of Potions of this kind in the Player's inventory
+	*
+	* @param newAmount
+	*/
+	public void setAmount(int newAmount) {
+		amount = newAmount;
+	}
+	
+	/**
+	* Method to modify the amount of the potions a Player has in thier inventory
+	*
+	* @param changeAmount
+	*/
+	public void modifyAmount(int changeAmount) {
+		amount += changeAmount;
+	}
 }
