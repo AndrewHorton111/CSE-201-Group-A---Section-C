@@ -13,7 +13,9 @@ import java.util.ArrayList;
  */
 public class Player extends Character {
 
-	int currentRoom;
+	Room[] roomList;
+	int roomId;
+	Room currentRoom;
 
 	/**
 	 * Constructor for the Player class.
@@ -23,9 +25,12 @@ public class Player extends Character {
 	 * @param inventory
 	 * @param roomId
 	 */
-	public Player(String name, int health, ArrayList<Item> inventory, int roomId) {
+	public Player(String name, int health, ArrayList<Item> inventory, Room[] roomList) {
 		super(name, health, inventory);
-		currentRoom = roomId;
+		this.roomList = roomList;
+		// Player always starts in the first room
+		roomId = 0;
+		currentRoom = roomList[0];
 	}
 
 	/**
@@ -33,7 +38,7 @@ public class Player extends Character {
 	 * 
 	 * @return currentRoom
 	 */
-	public int getCurrentRoom() {
+	public Room getCurrentRoom() {
 		return currentRoom;
 	}
 
@@ -41,7 +46,8 @@ public class Player extends Character {
 	 * Method that increments your room number when the Player completes a room.
 	 */
 	public void nextRoom() {
-		currentRoom++;
+		roomId++;
+		currentRoom = roomList[roomId];
 	}
 
 	/**
