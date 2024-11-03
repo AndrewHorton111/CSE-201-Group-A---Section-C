@@ -52,16 +52,11 @@ public class GameManager {
 			// Variations in acceptable commands for each room.
 			switch (i) {
 			case 0:
-				ArrayList<Item> itemList = new ArrayList<Item>();
-				TreasureRoom room1 = new TreasureRoom(descriptionList[i], validCommands, itemList);
+				Room room1 = new Room(descriptionList[i], validCommands);
 				roomList[i] = room1;
 				break;
 			case 1:
-				ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
-				// ArrayList<String> dialogList = new ArrayList<String>();
-				// ArrayList<Item> inventory = new ArrayList<Item>();
-				// Enemy e = new Enemy("Bob", 20, inventory, dialogList);
-				BattleRoom room2 = new BattleRoom(descriptionList[i], validCommands, enemyList);
+				Room room2 = new Room(descriptionList[i], validCommands);
 				roomList[i] = room2;
 				break;
 			// Other rooms not done for this iteration.
