@@ -4,7 +4,7 @@
  * @version 1.0
  */
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * This class is the parent class of TreasureRoom and BattleRoom, and
@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class Room {
 
 	String roomDescription;
-	HashMap<String, String> validCommands;
+	ArrayList<String> validCommands;
 	boolean roomCleared;
 	
 	/**
@@ -22,7 +22,7 @@ public class Room {
 	 * @param roomDescription
 	 * @param acceptableCommands
 	 */
-	public Room(String roomDescription, HashMap<String, String> validCommands) {
+	public Room(String roomDescription, ArrayList<String> validCommands) {
 		super();
 		this.roomDescription = roomDescription;
 		this.validCommands = validCommands;
@@ -35,7 +35,7 @@ public class Room {
 	 * 
 	 * @return validCommands
 	 */
-	public HashMap<String, String> getValidCommands() {
+	public ArrayList<String> getValidCommands() {
 		return validCommands;
 	}
 }
