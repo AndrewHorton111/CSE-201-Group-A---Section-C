@@ -133,6 +133,8 @@ public class Player extends Character {
 				}
 			}
 			inventory.add(itemToAdd);
+		} else {
+			inventory.add(itemToAdd);
 		}
 		System.out.println("The item has been added to your inventory.");
 	}

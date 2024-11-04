@@ -203,7 +203,7 @@ public class GameManager {
                     Method method = CommandHandler.class.getMethod(methodName);
                     method.invoke(commandHandler);
                 } catch (Exception e) {
-                    //System.out.println("Error executing command: " + e.getMessage());
+
                 }
             } else {
                 System.out.println("Unknown command. Type 'Help' for a list of commands.");
