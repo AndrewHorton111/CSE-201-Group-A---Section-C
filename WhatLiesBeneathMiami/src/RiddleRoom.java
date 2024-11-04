@@ -5,12 +5,13 @@
  */
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class RiddleRoom extends Room {
 	
-	public RiddleRoom(String roomDescription, ArrayList<String> validCommands, ArrayList<Item> items, ArrayList<String> objects) {
-		super(roomDescription, validCommands, items, objects);
+	public RiddleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
+		super(roomDescription, roomCommands, items, objects);
 	}
 
 

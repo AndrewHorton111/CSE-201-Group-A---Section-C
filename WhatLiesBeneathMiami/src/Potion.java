@@ -23,6 +23,10 @@ public class Potion extends Item {
 	 * @param effectPower
 	 * @param amount
 	 */
+	public Potion(String name, String itemDescription) {
+		this(name, itemDescription, "health", 1, 1);
+	}
+	
 	public Potion(String name, String itemDescription, String type, int effectPower, int amount) {
 		super(name, itemDescription);
 		this.type = type;

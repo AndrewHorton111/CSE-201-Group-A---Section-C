@@ -1,11 +1,14 @@
 /**
  * Class: CSE 201
  * @author Andrew Horton
+ * @author Jacob Artnak
  * @version 1.0
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class is the parent class of TreasureRoom and BattleRoom, and
@@ -14,7 +17,7 @@ import java.util.List;
 public class Room {
 
 	String roomDescription;
-	ArrayList<String> validCommands;
+	private Map<String, String> roomCommands;  // Store command and corresponding action method name
 	private List<Item> items;  // List of items in the room
 	boolean roomCleared;
 	ArrayList<String> objects; // List of objects (table, cellar, etc.)
@@ -25,10 +28,10 @@ public class Room {
 	 * @param roomDescription
 	 * @param acceptableCommands
 	 */
-	public Room(String roomDescription, ArrayList<String> validCommands, ArrayList<Item> items, ArrayList<String> objects) {
+	public Room(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
 		super();
 		this.roomDescription = roomDescription;
-		this.validCommands = validCommands;
+		this.roomCommands = roomCommands;
 		this.items = items;
 		this.objects = objects;
 		// roomCleared is always false by default. 
@@ -38,11 +41,13 @@ public class Room {
 	/**
 	 * Method to get the valid commands for the room.
 	 * 
-	 * @return validCommands
+	 * @return roomCommands
 	 */
-	public ArrayList<String> getValidCommands() {
-		return validCommands;
-	}
+	
+	public Map<String, String> getRoomCommands() {
+        return roomCommands;
+    }
+
 	
 	/**
 	 * Method to find out if a certain object is in a room
@@ -86,4 +91,6 @@ public class Room {
 		
 		System.out.println(result);
 	}
+	
+	
 }

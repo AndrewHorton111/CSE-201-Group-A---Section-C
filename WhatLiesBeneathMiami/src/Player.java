@@ -52,7 +52,9 @@ public class Player extends Character {
 			currentRoom.roomCleared = true;
             roomId++;
             currentRoom = roomList[roomId];
-            System.out.println("You have moved to the next room: " + currentRoom.roomDescription);
+
+            System.out.println("You have moved to the next room:\n" + currentRoom.roomDescription);
+            
         } else {
             System.out.println("You are in the final room and cannot move further.");
         }
@@ -148,7 +150,7 @@ public class Player extends Character {
 		// Loop through all Potions in inventory and if a matching Potion
 		// is found, decrease its amount by 1. Print an error message if no
 		// Potions match the name given.
-		for (int i = 2; i < inventory.size(); i++) {
+		for (int i = 0; i < inventory.size(); i++) {
 			Item item = inventory.get(i);
 			if (itemName.equals(item.name)) {
 				

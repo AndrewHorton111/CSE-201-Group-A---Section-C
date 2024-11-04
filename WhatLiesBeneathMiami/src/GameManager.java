@@ -10,7 +10,10 @@
  * @version 1.0
  */
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -18,7 +21,8 @@ import java.util.Scanner;
  * needed to run the UI.
  */
 public class GameManager {
-
+	private static final int roomCount = 2; // 1st iteration
+	
 	/**
 	 * This method initializes all of the rooms the game will have, and stores them
 	 * in an array for later use.
@@ -26,81 +30,78 @@ public class GameManager {
 	 * @return roomList
 	 */
 	public static Room[] setUpRooms() {
-		// Array of roomDescriptions to be used when creating the Rooms.
-		// Left as place holders for now.
-		String[] descriptionList = new String[7];
-		descriptionList[0] = "You awaken in a damp, shadow-filled cellar. The walls are lined with stone, dripping with moisture, and an uneasy silence fills the air. A faint, stale smell surrounds you. Scattered across a dusty wooden table nearby are a few items: an old flashlight, a rusted key, and a torn page from a journal.";
-		descriptionList[1] = "Room Description #2";
-		descriptionList[2] = "Room Description #3";
-		descriptionList[3] = "Room Description #4";
-		descriptionList[4] = "Room Description #5";
-		descriptionList[5] = "Room Description #6";
-		descriptionList[6] = "Room Description #7";
+
 
 		// Array of Rooms that will be used throughout the game.
-		Room[] roomList = new Room[7];
-		for (int i = 0; i < 7; i++) {
+		Room[] roomList = new Room[roomCount];
+		for (int i = 0; i < roomCount; i++) {
 			// the validCommands ArrayList stores the string of each command
 			// that is valid in each room. 
-			ArrayList<String> validCommands = new ArrayList<>();
+			Map<String, String> roomCommands = new HashMap<>();
 			ArrayList<Item> items = new ArrayList<>();
 			ArrayList<String> objects = new ArrayList<>();
 			
 			// The following commands should be available in every room.
-			validCommands.add("Exit");
-			validCommands.add("Help");
-			validCommands.add("Next room");
+			// format - 
+			// key: the text the user types 
+			// value: the corresponding method to call (leave "" if in switch case)
+			roomCommands.put("exit", "");
+			roomCommands.put("help", "");
+			roomCommands.put("next room", "");
 
 			// Basic object/item commands
-			validCommands.add("Items");
-			validCommands.add("Objects");
+			roomCommands.put("items", "");
+			roomCommands.put("objects", "");
 			
-			validCommands.add("Examine");
-			validCommands.add("Equip");
-			validCommands.add("Take");
-			validCommands.add("Use");
+			roomCommands.put("examine", "");
+			roomCommands.put("equip", "");
+			roomCommands.put("take", "");
+			roomCommands.put("use", "");
 			// Variations in acceptable commands for each room.
 			switch (i) {
 			case 0:
 				
+				roomCommands.put("open door", "openDoor");
+				items.add(new Item("mysterious note", "A worn, faded note that reads:\n\n"
+						          	+ "Welcome to the depths...\n"
+						         	+ "Trust only what you can see.\n"
+						           	+ "Shadows conceal more than they reveal.\n"
+						           	+ "The path forward is hidden in plain sight."));
 				
-
-			    items.add(new Item("Rusty Key", "The key is cold and covered in rust. It’s likely been here for years, maybe decades."));
-			    items.add(new Item("Flashlight", "An old flashlight with scratches on the surface. The battery is weak, but it flickers to life when you switch it on."));
-			    items.add(new Item("Journal Page", "A brittle piece of paper with faded writing. One line catches your eye: ‘Beware the shadows – not all that hides is empty."));
-			    
-			    objects.add("Cellar"); // rust key is used on this
-			    
-				Room room1 = new CellarRoom(descriptionList[i], validCommands, items, objects);
+				items.add(new Potion("health potion", "A potion that replenishes your health"));
+	
+				
+				objects.add("door"); 
+				    
+				String roomDescription =  "You awaken on the cold stone floor of a small, shadowy room.\n"
+						+ " The only light comes from a narrow window high on the wall, casting a faint glow across the room.\n"
+						+ "As you sit up, you notice a simple wooden bench against one wall and a tattered piece of paper resting on it.\n"
+						+ "The air is heavy, and a deep silence fills the room.\n"
+						+ "A sturdy-looking door stands opposite you, closed tight.";
+				
+			    Room room1 = new BeginnerRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room1;
 				break;
 			case 1:
-				validCommands.add("Attack");
-				validCommands.add("Dodge");
-				validCommands.add("Heal");
-				Room room2 = new Room(descriptionList[i], validCommands, items, objects);
+//				validCommands.add("Attack");
+//				validCommands.add("Dodge");
+//				validCommands.add("Heal");
+				items.add(new Item("rusty key", "The key is cold and covered in rust. It’s likely been here for years, maybe decades."));
+			    items.add(new Item("flashlight", "An old flashlight with scratches on the surface. The battery is weak, but it flickers to life when you switch it on."));
+			    items.add(new Item("journal page", "A brittle piece of paper with faded writing. One line catches your eye: ‘Beware the shadows – not all that hides is empty."));
+			    
+			    objects.add("cellar"); // rust key is used on this
+			    
+			    roomDescription =  "You arrive in a damp, shadow-filled cellar.\n"
+			    		+ "The walls are lined with stone, dripping with moisture, and an uneasy silence fills the air.\n"
+			    		+ "A faint, stale smell surrounds you.\n"
+			    		+ "Scattered across a dusty wooden table nearby are a few items: an old flashlight, a rusted key, and a torn page from a journal.";
+			    
+				Room room2 = new CellarRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room2;
 				break;
-			// Other rooms not done for this iteration.
-			case 2:
-				Room room3 = new Room(descriptionList[i], validCommands, items, objects);
-				roomList[i] = room3;
-				break;
-			case 3:
-				Room room4 = new Room(descriptionList[i], validCommands, items, objects);
-				roomList[i] = room4;
-				break;
-			case 4:
-				Room room5 = new Room(descriptionList[i], validCommands, items, objects);
-				roomList[i] = room5;
-				break;
-			case 5:
-				Room room6 = new Room(descriptionList[i], validCommands, items, objects);
-				roomList[i] = room6;
-				break;
-			case 6:
-				Room room7 = new Room(descriptionList[i], validCommands, items, objects);
-				roomList[i] = room7;
+				
+			default:
 				break;
 			}
 
@@ -111,82 +112,16 @@ public class GameManager {
 
 
 	
-	/**
-	 * This method acts as the enemy's turn in combat. The enemy should
-	 * only attack the player. If the enemy's health is 0 or lower, they
-	 * shouldn't deal damage and the roomCleared boolean should be set
-	 * to true for the current Room. 
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void enemyTurn(Player player, Enemy enemy) {
-		//TODO
-	}
 	
-	/**
-	 * This method gets the weapon from the Player and uses its attributes
-	 * to modify the health of the Enemy. After the Player's turn, call
-	 * "enemyTurn" so the Enemy can attack the player.
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void attack(Player player, Enemy enemy) {
-		//TODO
-		enemyTurn(player, enemy);
-	}
-	
-	/**
-	 * This method makes it so that the player has a much higher chance 
-	 * to dodge the enemy's next attack. After the Player's turn, call
-	 * "enemyTurn" so the Enemy can attack the player.
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void dodge(Player player, Enemy enemy) {
-		//TODO
-		
-		// dodgeChance + num
-		enemyTurn(player, enemy);
-		// dodgeChance - num
-	}
-	
-	/**
-	 * This method heals the Player if they have health Potions left.
-	 * This method might be expanded to be able to use different types
-	 * of Potions in the future, but for this iteration it should just
-	 * use health Potions. After the Player's turn, call "enemyTurn" so
-	 * the Enemy can attack the player.
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void heal(Player player, Enemy enemy) {
-		//TODO
-		enemyTurn(player, enemy);
-	}
-	
-	/**
-	 * This method moves the player to the next room, provided they have
-	 * already cleared the room. If they have cleared the room, print the 
-	 * room description for the new room. 
-	 * 
-	 * @param player
-	 */
-	public static void nextRoom(Player player) {
-		//TODO
-	}
 	
 	/**
 	 * This method prints all valid commands in the given room.
 	 * 
 	 * @param validCommands
 	 */
-	public static void printHelpMessage(ArrayList<String> validCommands) {
+	public static void printHelpMessage(Map<String, String> roomCommands) {
 		System.out.println("List of available commands: ");
-		for (String command : validCommands) {
+		for (String command : roomCommands.keySet()) {
 			System.out.println("\"" + command + "\"");
 		}
 	}
@@ -215,15 +150,18 @@ public class GameManager {
 	 * @param input
 	 * @return isValid
 	 */
-	public static boolean checkInput(ArrayList<String> validCommands, String input) {
+	public static boolean checkInput(Map<String, String> roomCommands, String input) {
 		boolean isValid = false;
-		for (String command : validCommands) {
+		
+		
+		for (String command : roomCommands.keySet()) {
 			if (command.equalsIgnoreCase(input)) {
 				isValid = true;
 				break;
 			}
 		}
-		
+
+
 		// Print an error message if the input is not valid.
 		if (!isValid) {
 			System.out.println(input + " is not a valid command.");
@@ -256,7 +194,7 @@ public class GameManager {
 		// Create an enemy the player will battle in room 2.
 		Enemy enemy = null;
 		
-		System.out.println("Welcome to 'What Lies Beneath Miami'!");
+		System.out.println("Welcome to 'What Lies Beneath Miami!\n\n");
 		System.out.println(player.getCurrentRoom().roomDescription);
 		Scanner scan = new Scanner(System.in);
 		CommandHandler commandHandler = new CommandHandler(player, scan); // contains methods like use, examine
@@ -267,21 +205,23 @@ public class GameManager {
 		while (true) {
 
 			// Gets the valid commands for the room the player is in.
-			ArrayList<String> validCommands = player.getCurrentRoom().getValidCommands();
+			Map<String, String> roomCommands = player.getCurrentRoom().getRoomCommands();
 
 			// Gets input from the user.
 			System.out.println("> ");
-			String input = scan.nextLine();
+			String input = scan.nextLine().trim();
 
 			// The following codes checks that any input provided is valid.
 			// by confirming that it is in the validCommands ArrayList for
 			// the room the user is currently in. If not, the program restarts
 			// the loop and asks for another input from the user.
-			if (!checkInput(validCommands, input)) {
+			if (!checkInput(roomCommands, input)) {
 				continue;
 			}
 				
 			Room currentRoom = player.getCurrentRoom();
+			
+			
 			// If this part of the code is reached, then the input the user
 			// provided was valid, and the switch case below will call another
 			// method based on what command is being input.
@@ -290,7 +230,7 @@ public class GameManager {
 				exitProgram(scan);
 				break;
 			case "help" :
-				printHelpMessage(validCommands);
+				printHelpMessage(roomCommands);
 				break;
 			case "next room" :
 				player.nextRoom();
@@ -317,6 +257,20 @@ public class GameManager {
 		        break;
 			}
 				
+			//Custom functions for each room, e.g "open door" = openDoor()
+			
+			if (roomCommands.containsKey(input.toLowerCase())) {
+                String methodName = roomCommands.get(input.toLowerCase());
+
+                try {
+                    Method method = CommandHandler.class.getMethod(methodName);
+                    method.invoke(commandHandler);  // Calls the specified method on CommandHandler
+                } catch (Exception e) {
+                    //System.out.println("Error executing command: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Unknown command. Type 'Help' for a list of commands.");
+            }
 			// The following code is used for testing various classes.
 			// They will not be used in the final program.
 			/**

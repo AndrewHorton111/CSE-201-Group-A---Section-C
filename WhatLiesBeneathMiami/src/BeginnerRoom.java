@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CellarRoom extends Room {
+public class BeginnerRoom extends Room {
 	
-	public CellarRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
+	public BeginnerRoom(String roomDescription, Map<String,String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}
+
+
+
 
 }
