@@ -1,21 +1,32 @@
 /**
  * @Author Jacob Artnak
+ * This class handles player commands, such as using items, examining objects,
+ * equipping items, and moving to the next room. Each command interacts with
+ * the Player and Room classes to perform specific actions.
  */
-import java.util.Scanner;
 
+import java.util.Scanner;
 
 public class CommandHandler {
     private Player player;
     private Scanner scan;
-    
+
+    /**
+     * Constructor for CommandHandler.
+     * 
+     * @param player The player interacting with the game.
+     * @param scan   The scanner used to read player input.
+     */
     public CommandHandler(Player player, Scanner scan) {
         this.player = player;
         this.scan = scan;
     }
 
-
-
-    // General "use" function to handle different items
+    /**
+     * General "use" function to handle different items. Prompts the player to
+     * specify an item to use, checks if it's in the inventory, and performs
+     * item-specific actions depending on the item.
+     */
     public void use() {
         System.out.println("What would you like to use?");
         String itemName = scan.nextLine();
@@ -45,7 +56,6 @@ public class CommandHandler {
                 player.removeFromInventory(item.name);
                 break;
 
-           
             default:
                 System.out.println("You can't use the " + itemName + " here.");
                 break;
@@ -53,15 +63,14 @@ public class CommandHandler {
     }
 
     /**
-     * 
-     * @param itemName
+     * Prompts the player to examine an item, checks if the item exists in the
+     * current room, and displays its description if found.
      */
     public void examine() { 
-    	System.out.println("What would you like to examine?");
+        System.out.println("What would you like to examine?");
         String itemName = scan.nextLine();
 
-    	Room currentRoom = player.getCurrentRoom();
-    	
+        Room currentRoom = player.getCurrentRoom();
         Item item = currentRoom.getItem(itemName);
         
         if (item != null) {
@@ -70,37 +79,36 @@ public class CommandHandler {
             System.out.println("There is no " + itemName + " to examine here.");
         }
     }
-    
+
     /**
-     * 
-     * @param itemName
+     * Prompts the player to equip an item, checks if the item is in the player's
+     * inventory and equippable, and equips the item if possible.
      */
     public void equip() {
-    	System.out.println("What would you like to equip?");
+        System.out.println("What would you like to equip?");
         String itemName = scan.nextLine();
         
         Item item = player.getItem(itemName);
         if (item != null) {
-        	
-        	if (item.equippable) {
-        		player.setEquipped(item.name, true); // equip the item
+            if (item.equippable) {
+                player.setEquipped(item.name, true); // equip the item
                 System.out.println("You equipped the " + item.name + ".");
-        	} else {
-        		System.out.println(item.name + " is not equippable.");
-        	}
-            
+            } else {
+                System.out.println(item.name + " is not equippable.");
+            }
         } else {
             System.out.println("You don't have a " + itemName + " to equip.");
         }
     }
-    
+
     /**
-     * Take an item in the room
+     * Prompts the player to take an item from the room. If the item exists in the
+     * current room, it is added to the player's inventory.
      */
     public void take() {
-    	System.out.println("What would you like to take");
+        System.out.println("What would you like to take");
         String itemName = scan.nextLine();
-        
+
         Room currentRoom = player.getCurrentRoom();
         Item item = currentRoom.getItem(itemName);
         if (item != null) {
@@ -110,76 +118,79 @@ public class CommandHandler {
             System.out.println("There is no " + itemName + " in the room.");
         }
     }
-    
+
     /**
-	 * This method acts as the enemy's turn in combat. The enemy should
-	 * only attack the player. If the enemy's health is 0 or lower, they
-	 * shouldn't deal damage and the roomCleared boolean should be set
-	 * to true for the current Room. 
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void enemyTurn(Player player, Enemy enemy) {
-		//TODO
-	}
-	
-	/**
-	 * This method gets the weapon from the Player and uses its attributes
-	 * to modify the health of the Enemy. After the Player's turn, call
-	 * "enemyTurn" so the Enemy can attack the player.
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void attack(Player player, Enemy enemy) {
-		//TODO
-		enemyTurn(player, enemy);
-	}
-	
-	/**
-	 * This method makes it so that the player has a much higher chance 
-	 * to dodge the enemy's next attack. After the Player's turn, call
-	 * "enemyTurn" so the Enemy can attack the player.
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void dodge(Player player, Enemy enemy) {
-		//TODO
-		
-		// dodgeChance + num
-		enemyTurn(player, enemy);
-		// dodgeChance - num
-	}
-	
-	/**
-	 * This method heals the Player if they have health Potions left.
-	 * This method might be expanded to be able to use different types
-	 * of Potions in the future, but for this iteration it should just
-	 * use health Potions. After the Player's turn, call "enemyTurn" so
-	 * the Enemy can attack the player.
-	 * 
-	 * @param player
-	 * @param enemy
-	 */
-	public static void heal(Player player, Enemy enemy) {
-		//TODO
-		enemyTurn(player, enemy);
-	}
-	
-	/**
-	 * This method moves the player to the next room, provided they have
-	 * already cleared the room. If they have cleared the room, print the 
-	 * room description for the new room. 
-	 * 
-	 * @param player
-	 */
-	public static void nextRoom(Player player) {
-		//TODO
-	}
-	
- // Example method to handle opening the door
+     * This method acts as the enemy's turn in combat. The enemy should
+     * only attack the player. If the enemy's health is 0 or lower, they
+     * shouldn't deal damage and the roomCleared boolean should be set
+     * to true for the current Room. 
+     * 
+     * @param player The player being attacked by the enemy.
+     * @param enemy  The enemy engaging in combat with the player.
+     */
+    public static void enemyTurn(Player player, Enemy enemy) {
+        // TODO
+    }
+
+    /**
+     * This method gets the weapon from the Player and uses its attributes
+     * to modify the health of the Enemy. After the Player's turn, call
+     * "enemyTurn" so the Enemy can attack the player.
+     * 
+     * @param player The player attacking the enemy.
+     * @param enemy  The enemy being attacked by the player.
+     */
+    public static void attack(Player player, Enemy enemy) {
+        // TODO
+        enemyTurn(player, enemy);
+    }
+
+    /**
+     * This method makes it so that the player has a much higher chance 
+     * to dodge the enemy's next attack. After the Player's turn, call
+     * "enemyTurn" so the Enemy can attack the player.
+     * 
+     * @param player The player attempting to dodge the attack.
+     * @param enemy  The enemy attempting to attack the player.
+     */
+    public static void dodge(Player player, Enemy enemy) {
+        // TODO
+        // dodgeChance + num
+        enemyTurn(player, enemy);
+        // dodgeChance - num
+    }
+
+    /**
+     * This method heals the Player if they have health Potions left.
+     * This method might be expanded to be able to use different types
+     * of Potions in the future, but for this iteration it should just
+     * use health Potions. After the Player's turn, call "enemyTurn" so
+     * the Enemy can attack the player.
+     * 
+     * @param player The player using a health potion to restore health.
+     * @param enemy  The enemy awaiting its turn.
+     */
+    public static void heal(Player player, Enemy enemy) {
+        // TODO
+        enemyTurn(player, enemy);
+    }
+
+    /**
+     * This method moves the player to the next room, provided they have
+     * already cleared the room. If they have cleared the room, print the 
+     * room description for the new room. 
+     * 
+     * @param player The player advancing to the next room.
+     */
+    public static void nextRoom(Player player) {
+        // TODO
+    }
+
+    /**
+     * Handles the "open door" command, which allows the player to open
+     * a door if present in the room. If successful, advances the player to
+     * the next room.
+     */
     public void openDoor() {
         Room currentRoom = player.getCurrentRoom();
         if (currentRoom.containsObject("door")) {

@@ -1,5 +1,9 @@
 /**
  * Class: CSE 201
+ * This class represents a Room in the game, containing a description, items,
+ * objects, and acceptable commands for interaction. It serves as a base class 
+ * for specialized room types like TreasureRoom and BattleRoom.
+ * 
  * @author Andrew Horton
  * @author Jacob Artnak
  * @version 1.0
@@ -10,23 +14,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * This class is the parent class of TreasureRoom and BattleRoom, and
- * holds the description of the room and the list of acceptable commands.
- */
 public class Room {
 
 	String roomDescription;
-	private Map<String, String> roomCommands;  // Store command and corresponding action method name
+	private Map<String, String> roomCommands;  // Stores command and corresponding action method name
 	private List<Item> items;  // List of items in the room
 	boolean roomCleared;
-	ArrayList<String> objects; // List of objects (table, cellar, etc.)
-	
+	ArrayList<String> objects; // List of objects (e.g., table, cellar, etc.)
+
 	/**
 	 * Constructor for the Room class.
 	 * 
-	 * @param roomDescription
-	 * @param acceptableCommands
+	 * @param roomDescription A description of the room's appearance and atmosphere.
+	 * @param roomCommands    A map containing valid commands and their associated
+	 *                        action methods.
+	 * @param items           A list of items available in the room.
+	 * @param objects         A list of objects present in the room.
 	 */
 	public Room(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
 		super();
@@ -34,63 +37,69 @@ public class Room {
 		this.roomCommands = roomCommands;
 		this.items = items;
 		this.objects = objects;
-		// roomCleared is always false by default. 
+		// roomCleared is always false by default.
 		this.roomCleared = false;
 	}
-	
+
 	/**
-	 * Method to get the valid commands for the room.
+	 * Retrieves the valid commands for the room.
 	 * 
-	 * @return roomCommands
+	 * @return A map of roomCommands, where the keys are command strings and values
+	 *         are associated method names.
 	 */
-	
 	public Map<String, String> getRoomCommands() {
         return roomCommands;
     }
 
-	
 	/**
-	 * Method to find out if a certain object is in a room
-	 * @param objectName
-	 * @return true if found, false otherwise
+	 * Checks if a specified object is present in the room.
+	 * 
+	 * @param objectName The name of the object to look for.
+	 * @return true if the object is found, false otherwise.
 	 */
 	public boolean containsObject(String objectName) {
-		
 		for (String name : objects) {
-			if (name.toLowerCase().equals(objectName.toLowerCase()))
+			if (name.equalsIgnoreCase(objectName)) {
 				return true;
+			}
 		}
-		
 		return false;	
-		
 	}
+
+	/**
+	 * Retrieves an item in the room by its name.
+	 * 
+	 * @param itemName The name of the item to retrieve.
+	 * @return The item if found, or null if the item is not present in the room.
+	 */
 	public Item getItem(String itemName) {
 		for (Item item : items) {
-			if (item.name.toLowerCase().equals(itemName.toLowerCase()))
+			if (item.name.equalsIgnoreCase(itemName)) {
 				return item;
+			}
 		}
-		
 		return null;
 	}
-	
+
+	/**
+	 * Displays all items currently available in the room.
+	 */
 	public void displayItems() {
-		
 		String result = "Items in the room: ";
 		for (Item item : items) {
-			result+=item.name+ ", ";
+			result += item.name + ", ";
 		}
-		
 		System.out.println(result);
 	}
+
+	/**
+	 * Displays all objects currently present in the room.
+	 */
 	public void displayObjects() {
-		
 		String result = "Objects in the room: ";
 		for (String object : objects) {
-			result+=object+ ", ";
+			result += object + ", ";
 		}
-		
 		System.out.println(result);
 	}
-	
-	
 }
