@@ -29,7 +29,7 @@ public class GameManager {
 		// Array of roomDescriptions to be used when creating the Rooms.
 		// Left as place holders for now.
 		String[] descriptionList = new String[7];
-		descriptionList[0] = "Room Description #1";
+		descriptionList[0] = "You awaken in a damp, shadow-filled cellar. The walls are lined with stone, dripping with moisture, and an uneasy silence fills the air. A faint, stale smell surrounds you. Scattered across a dusty wooden table nearby are a few items: an old flashlight, a rusted key, and a torn page from a journal.";
 		descriptionList[1] = "Room Description #2";
 		descriptionList[2] = "Room Description #3";
 		descriptionList[3] = "Room Description #4";
@@ -42,46 +42,64 @@ public class GameManager {
 		for (int i = 0; i < 7; i++) {
 			// the validCommands ArrayList stores the string of each command
 			// that is valid in each room. 
-			ArrayList<String> validCommands = new ArrayList<String>();
+			ArrayList<String> validCommands = new ArrayList<>();
+			ArrayList<Item> items = new ArrayList<>();
+			ArrayList<String> objects = new ArrayList<>();
+			
 			// The following commands should be available in every room.
 			validCommands.add("Exit");
 			validCommands.add("Help");
 			validCommands.add("Next room");
 
+			// Basic object/item commands
+			validCommands.add("Items");
+			validCommands.add("Objects");
+			
+			validCommands.add("Examine");
+			validCommands.add("Equip");
+			validCommands.add("Take");
+			validCommands.add("Use");
 			// Variations in acceptable commands for each room.
 			switch (i) {
 			case 0:
-				validCommands.add("Examine");
-				validCommands.add("Equip");
-				Room room1 = new Room(descriptionList[i], validCommands);
+				
+				
+
+			    items.add(new Item("Rusty Key", "The key is cold and covered in rust. It’s likely been here for years, maybe decades."));
+			    items.add(new Item("Flashlight", "An old flashlight with scratches on the surface. The battery is weak, but it flickers to life when you switch it on."));
+			    items.add(new Item("Journal Page", "A brittle piece of paper with faded writing. One line catches your eye: ‘Beware the shadows – not all that hides is empty."));
+			    
+			    objects.add("Cellar"); // rust key is used on this
+			    
+				Room room1 = new CellarRoom(descriptionList[i], validCommands, items, objects);
 				roomList[i] = room1;
 				break;
 			case 1:
 				validCommands.add("Attack");
 				validCommands.add("Dodge");
 				validCommands.add("Heal");
-				Room room2 = new Room(descriptionList[i], validCommands);
+				Room room2 = new Room(descriptionList[i], validCommands, items, objects);
 				roomList[i] = room2;
 				break;
 			// Other rooms not done for this iteration.
 			case 2:
-				Room room3 = new Room(descriptionList[i], validCommands);
+				Room room3 = new Room(descriptionList[i], validCommands, items, objects);
 				roomList[i] = room3;
 				break;
 			case 3:
-				Room room4 = new Room(descriptionList[i], validCommands);
+				Room room4 = new Room(descriptionList[i], validCommands, items, objects);
 				roomList[i] = room4;
 				break;
 			case 4:
-				Room room5 = new Room(descriptionList[i], validCommands);
+				Room room5 = new Room(descriptionList[i], validCommands, items, objects);
 				roomList[i] = room5;
 				break;
 			case 5:
-				Room room6 = new Room(descriptionList[i], validCommands);
+				Room room6 = new Room(descriptionList[i], validCommands, items, objects);
 				roomList[i] = room6;
 				break;
 			case 6:
-				Room room7 = new Room(descriptionList[i], validCommands);
+				Room room7 = new Room(descriptionList[i], validCommands, items, objects);
 				roomList[i] = room7;
 				break;
 			}
@@ -91,29 +109,7 @@ public class GameManager {
 		return roomList;
 	}
 
-	/**
-	 * This method lets the player look at the attributes of the item they
-	 * input to the scanner.
-	 * 
-	 * @param scan
-	 */
-	public static void examineItem(Scanner scan) {
-		//TODO
-		// Create a list of Items that are in room one.
-		// At least one Weapon, Armor, and Potion (Health).
-	}
-	
-	/**
-	 * This method lets the player equip a new item when they are in a room
-	 * that has one. It should set the roomCleared attribute from the first
-	 * Room once at least one of each type of Item has been taken. 
-	 * 
-	 * @param player
-	 * @param scan
-	 */
-	public static void equipItem(Player player, Scanner scan) {
-		//TODO
-	}
+
 	
 	/**
 	 * This method acts as the enemy's turn in combat. The enemy should
@@ -248,17 +244,24 @@ public class GameManager {
 		
 		// Sets up all seven Rooms that will be used.
 		Room[] roomList = setUpRooms();
-
+		
+		
 		// Makes the player. Just default values for now. 
 		ArrayList<Item> inventory = new ArrayList<Item>();
 		Player player = new Player("Name", 20, inventory, roomList);
+		
+		
 		
 		//TODO
 		// Create an enemy the player will battle in room 2.
 		Enemy enemy = null;
 		
+		System.out.println("Welcome to 'What Lies Beneath Miami'!");
+		System.out.println(player.getCurrentRoom().roomDescription);
 		Scanner scan = new Scanner(System.in);
-
+		CommandHandler commandHandler = new CommandHandler(player, scan); // contains methods like use, examine
+		
+		
 		// The rest of the main method checks for user input and calls the methods
 		// based on what the user typed.
 		while (true) {
@@ -267,7 +270,7 @@ public class GameManager {
 			ArrayList<String> validCommands = player.getCurrentRoom().getValidCommands();
 
 			// Gets input from the user.
-			System.out.println("Enter your input: ");
+			System.out.println("> ");
 			String input = scan.nextLine();
 
 			// The following codes checks that any input provided is valid.
@@ -278,34 +281,40 @@ public class GameManager {
 				continue;
 			}
 				
+			Room currentRoom = player.getCurrentRoom();
 			// If this part of the code is reached, then the input the user
 			// provided was valid, and the switch case below will call another
 			// method based on what command is being input.
-			switch (input) {
-			case "Exit" :
+			switch (input.toLowerCase()) {
+			case "exit" :
 				exitProgram(scan);
 				break;
-			case "Help" :
+			case "help" :
 				printHelpMessage(validCommands);
 				break;
-			case "Next room" :
+			case "next room" :
 				player.nextRoom();
 				break;
-			case "Examine" :
-				examineItem(scan);
+			
+			case "items" : //displays all items in the room
+				currentRoom.displayItems();
 				break;
-			case "Equip" :
-				equipItem(player, scan);
+			case "objects" : // displays all objects in the room
+				currentRoom.displayObjects();
 				break;
-			case "Attack" :
-				attack(player, enemy);
-				break;
-			case "Dodge" :
-				dodge(player, enemy);
-				break;
-			case "Heal" :
-				heal(player, enemy);
-				break;
+				
+			case "examine":
+				commandHandler.examine();  // Allows the player to examine items
+		        break;
+		    case "take":
+		    	commandHandler.take();  // Player takes an item
+		        break;
+		    case "equip":
+		        commandHandler.equip();  // Equip the flashlight
+		        break;
+		    case "use":
+		        commandHandler.use();  // Use the key on the door
+		        break;
 			}
 				
 			// The following code is used for testing various classes.
@@ -356,5 +365,8 @@ public class GameManager {
 			 * player.removeFromInventory("Doesn't exist"); player.displayInventory();
 			 */
 		} // End of while loop
-	} // End of main method
-} // End of GameManager
+		
+		
+	}
+	
+}

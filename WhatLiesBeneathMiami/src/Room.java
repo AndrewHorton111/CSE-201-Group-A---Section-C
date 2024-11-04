@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is the parent class of TreasureRoom and BattleRoom, and
@@ -14,7 +15,9 @@ public class Room {
 
 	String roomDescription;
 	ArrayList<String> validCommands;
+	private List<Item> items;  // List of items in the room
 	boolean roomCleared;
+	ArrayList<String> objects; // List of objects (table, cellar, etc.)
 	
 	/**
 	 * Constructor for the Room class.
@@ -22,12 +25,14 @@ public class Room {
 	 * @param roomDescription
 	 * @param acceptableCommands
 	 */
-	public Room(String roomDescription, ArrayList<String> validCommands) {
+	public Room(String roomDescription, ArrayList<String> validCommands, ArrayList<Item> items, ArrayList<String> objects) {
 		super();
 		this.roomDescription = roomDescription;
 		this.validCommands = validCommands;
+		this.items = items;
+		this.objects = objects;
 		// roomCleared is always false by default. 
-		roomCleared = false;
+		this.roomCleared = false;
 	}
 	
 	/**
@@ -37,5 +42,48 @@ public class Room {
 	 */
 	public ArrayList<String> getValidCommands() {
 		return validCommands;
+	}
+	
+	/**
+	 * Method to find out if a certain object is in a room
+	 * @param objectName
+	 * @return true if found, false otherwise
+	 */
+	public boolean containsObject(String objectName) {
+		
+		for (String name : objects) {
+			if (name.toLowerCase().equals(objectName.toLowerCase()))
+				return true;
+		}
+		
+		return false;	
+		
+	}
+	public Item getItem(String itemName) {
+		for (Item item : items) {
+			if (item.name.toLowerCase().equals(itemName.toLowerCase()))
+				return item;
+		}
+		
+		return null;
+	}
+	
+	public void displayItems() {
+		
+		String result = "Items in the room: ";
+		for (Item item : items) {
+			result+=item.name+ ", ";
+		}
+		
+		System.out.println(result);
+	}
+	public void displayObjects() {
+		
+		String result = "Objects in the room: ";
+		for (String object : objects) {
+			result+=object+ ", ";
+		}
+		
+		System.out.println(result);
 	}
 }

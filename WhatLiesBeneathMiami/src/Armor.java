@@ -22,7 +22,7 @@ public class Armor extends Item {
 	 * @param dodgeChance
 	 */
 	public Armor(String name, String itemDescription, int defense, int dodgeChance) {
-		super(name, itemDescription);
+		super(name, itemDescription, true);
 		this.defense = defense;
 		this.dodgeChance = dodgeChance;
 	}

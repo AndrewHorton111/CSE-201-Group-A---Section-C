@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RiddleRoom extends Room {
-	Scanner in = new Scanner(System.in);
 	
+	public RiddleRoom(String roomDescription, ArrayList<String> validCommands, ArrayList<Item> items, ArrayList<String> objects) {
+		super(roomDescription, validCommands, items, objects);
+	}
+
+
 	public void printWelcome() {
 		System.out.println("Welcome to the riddle room");
 		System.out.println("To make it past you will need to answer my riddles correctly");

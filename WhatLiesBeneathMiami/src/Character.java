@@ -3,6 +3,7 @@
  * Class: CSE 201
  * @author Andrew Horton
  * @author Koray Bayram
+ * @author Jacob Artnak
  * @version 1.0
  */
 

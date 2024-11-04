@@ -16,6 +16,7 @@ public class Player extends Character {
 	Room[] roomList;
 	int roomId;
 	Room currentRoom;
+	ArrayList<String> equippedItems;
 
 	/**
 	 * Constructor for the Player class.
@@ -31,6 +32,7 @@ public class Player extends Character {
 		// Player always starts in the first room
 		roomId = 0;
 		currentRoom = roomList[0];
+		equippedItems = new ArrayList<>();
 	}
 
 	/**
@@ -46,8 +48,14 @@ public class Player extends Character {
 	 * Method that increments your room number when the Player completes a room.
 	 */
 	public void nextRoom() {
-		roomId++;
-		currentRoom = roomList[roomId];
+		if (roomId < roomList.length - 1) {
+			currentRoom.roomCleared = true;
+            roomId++;
+            currentRoom = roomList[roomId];
+            System.out.println("You have moved to the next room: " + currentRoom.roomDescription);
+        } else {
+            System.out.println("You are in the final room and cannot move further.");
+        }
 	}
 
 	/**
@@ -110,18 +118,21 @@ public class Player extends Character {
 			Armor newItem = (Armor) itemToAdd;
 			inventory.set(1, newItem);
 		} else {
-			Potion newItem = (Potion) itemToAdd;
-			// Loop through all Potions and increase amount if already in inventory
-			for (int i = 2; i < inventory.size(); i++) {
-				if (newItem.name.equals(inventory.get(i).name)) {
-					Potion matchingPotion = (Potion) inventory.get(i);
-					matchingPotion.modifyAmount(newItem.amount);
-					System.out.println("The item has been added to your inventory.");
-					return;
+			
+			if (itemToAdd instanceof Potion) {
+				Potion newItem = (Potion) itemToAdd;
+				// Loop through all Potions and increase amount if already in inventory
+				for (int i = 2; i < inventory.size(); i++) {
+					if (newItem.name.equals(inventory.get(i).name)) {
+						Potion matchingPotion = (Potion) inventory.get(i);
+						matchingPotion.modifyAmount(newItem.amount);
+						System.out.println("The item has been added to your inventory.");
+						return;
+					}
 				}
 			}
-			// If the Potion is not already in the inventory, add it.
-			inventory.add(newItem);
+			
+			inventory.add(itemToAdd);
 		}
 		System.out.println("The item has been added to your inventory.");
 		return;
@@ -138,20 +149,58 @@ public class Player extends Character {
 		// is found, decrease its amount by 1. Print an error message if no
 		// Potions match the name given.
 		for (int i = 2; i < inventory.size(); i++) {
-			if (itemName.equals(inventory.get(i).name)) {
-				Potion matchingPotion = (Potion) inventory.get(i);
-				if (matchingPotion.amount <= 0) {
-					System.out.println("You are currently out of " + itemName + " potions.");
+			Item item = inventory.get(i);
+			if (itemName.equals(item.name)) {
+				
+				if (item instanceof Potion) {
+					Potion matchingPotion = (Potion) item;
+					if (matchingPotion.amount <= 0) {
+						System.out.println("You are currently out of " + itemName + " potions.");
+						return;
+					}
+					matchingPotion.modifyAmount(-1);
+					System.out.println("The potion was used.");
 					return;
+				} else { // Remove the item (key, etc.)
+					inventory.remove(i);
 				}
-				matchingPotion.modifyAmount(-1);
-				System.out.println("The potion was used.");
-				return;
+				
+				
 			}
 		}
 		// If no Potion was found, then the input was incorrect.
 		System.out.println("You do not have any " + itemName + " potions.");
 		return;
+	}
+	
+	
+	/**
+	 * Equip an item (flashlight, etc.)
+	 * @param itemName
+	 * @param action, true to equip, false to unequip
+	 */
+	public void setEquipped(String itemName, boolean action) {
+		
+		if (action) {
+			equippedItems.add(itemName);
+		} else {
+			Item item = getItem(itemName);
+			
+			if (item != null) // Make sure the item exists
+				equippedItems.remove(itemName);
+		}
+		
+	}
+	
+	public Item getItem(String itemName) {
+		
+		for (Item item : inventory) {
+			if (item.name.toLowerCase().equals(itemName.toLowerCase())) {
+				return item;
+			}
+		}
+		
+		return null;
 	}
 
 }
