@@ -19,7 +19,7 @@ public class GameManager {
 	
 	/**
 	 * Initializes all rooms for the game and stores them in an array for use
-	 * throughout gameplay. Each room is configured with specific commands, items,
+	 * throughout game play. Each room is configured with specific commands, items,
 	 * and objects based on its unique setup.
 	 * 
 	 * @return Room[] Array of rooms to be used throughout the game.

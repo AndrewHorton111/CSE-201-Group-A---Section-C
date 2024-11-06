@@ -21,7 +21,10 @@ public class RiddleRoom extends Room {
 		System.out.println("Are you prepared to test your intelligence?");
 		System.out.println();
 		System.out.println("Press 'Y' to recieve riddles");
-		
+	}
+	
+	private void testMethod() {
+		System.out.println("TEST");
 	}
 	
 	private ArrayList<String> riddleStorage() {
