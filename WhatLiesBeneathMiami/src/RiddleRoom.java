@@ -29,6 +29,8 @@ public class RiddleRoom extends Room {
 		
 	}
 	
+	// To choose a riddle randomly put all of them in a map and assign a key that is 
+	// numbers 1-x. Then using random have that select the key at the start
 	private ArrayList<String> riddleStorage() {
 		ArrayList<String> riddles = new ArrayList<>();
 		riddles.add("The more you take the more you leave behind. What am I?");
@@ -37,5 +39,9 @@ public class RiddleRoom extends Room {
 				+ " two legs at noon, and three legs in the evening?");
 		
 		return riddles;
+	}
+	
+	public void riddleHints(int riddleNum) {
+		
 	}
 }
