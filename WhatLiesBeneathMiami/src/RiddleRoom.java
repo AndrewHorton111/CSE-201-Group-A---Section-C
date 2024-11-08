@@ -26,6 +26,7 @@ public class RiddleRoom extends Room {
 	private void testMethod() {
 		System.out.println("TEST");
 		
+		
 	}
 	
 	private ArrayList<String> riddleStorage() {
