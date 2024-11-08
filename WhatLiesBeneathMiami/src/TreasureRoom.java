@@ -14,4 +14,5 @@ public class TreasureRoom extends Room {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
+	
 }
