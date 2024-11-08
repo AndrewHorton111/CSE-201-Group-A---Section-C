@@ -28,6 +28,7 @@ public class RiddleRoom extends Room {
 		System.out.println("TEST");
 		
 		
+		
 	}
 	
 	// To choose a riddle randomly put all of them in a map and assign a key that is 
