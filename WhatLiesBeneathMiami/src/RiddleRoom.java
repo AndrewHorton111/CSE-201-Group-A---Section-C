@@ -16,6 +16,7 @@ public class RiddleRoom extends Room {
 		printWelcome();
 		printRiddles();
 		
+		
 	}
 	
 	public RiddleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
