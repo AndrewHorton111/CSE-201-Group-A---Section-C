@@ -13,11 +13,11 @@ import java.Math.Random;
  */
 public class MiniBossRoom extends Room {
 
-	ArrayList<String> dialogList = new ArrayList<>;
+	ArrayList<String> dialogList = new ArrayList<>();
 	dialogList.add("I'm better than you");
 	dialogList.add("You suck");
 	
-	ArrayList<Item> inventory = new ArrayList<>;
+	ArrayList<Item> inventory = new ArrayList<>();
 	
 	Enemy miniBoss = new Enemy("Mini Boss", 50, this.inventory, this.dialogList);
 	
@@ -34,12 +34,15 @@ public class MiniBossRoom extends Room {
 	public void initiateCombat() {
 		System.out.println("You think you can beat me? Looks like you'll try!");
 		
+		// while neither player or mini boss has been beaten
 		while (player.getHealth() > 0 && miniBoss.getHealth() > 0) {
+			// lets player attack first
 			int damage = calculateDamage("player");
 			miniBoss.setHealth(miniBoss.getHealth() - damage);
 			System.out.println("Mini Boss Health: " + miniBoss.getHealth();
 			displayDialog();
 			
+			// mini boss attack after player attacks
 			damage = calculateDamage("miniBoss");
 			player.setHealth(player.getHealth() - damage);
 			System.out.println("Your Health: " + this.player.getHealth());
