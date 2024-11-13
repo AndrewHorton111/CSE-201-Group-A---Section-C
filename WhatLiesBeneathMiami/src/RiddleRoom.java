@@ -23,6 +23,7 @@ public class RiddleRoom extends Room {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
+	
 
 
 	public static void printWelcome() {
