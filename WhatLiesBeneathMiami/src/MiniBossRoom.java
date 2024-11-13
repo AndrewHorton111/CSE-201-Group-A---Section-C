@@ -71,5 +71,9 @@ public class MiniBossRoom extends Room {
 		
 	}
 	
+	public void testMethod() {
+		
+	}
+	
 	
 }
