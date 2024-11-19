@@ -30,10 +30,6 @@ public class RiddleRoom extends Room {
 		System.out.println("Press 'Y' to recieve riddles");
 	}
 
-	private void testMethod() {
-		
-	}
-
 	private static void printRiddles() {
 		// Load the riddles in
 		HashMap<Integer, String> riddles = riddleStorage();
