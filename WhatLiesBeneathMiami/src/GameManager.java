@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class GameManager {
-	private static final int roomCount = 2; // 1st iteration
+	private static final int roomCount = 3; // 2nd iteration, added riddleRoom
 	
 	/**
 	 * Initializes all rooms for the game and stores them in an array for use
@@ -206,6 +206,7 @@ public class GameManager {
 			}
 
 			// Execute room-specific commands using reflection
+			// To use custom commands, add them to the roomCommands Map
 			if (roomCommands.containsKey(input.toLowerCase())) {
                 String methodName = roomCommands.get(input.toLowerCase());
                 try {
