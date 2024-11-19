@@ -33,7 +33,7 @@ public class RiddleRoom extends Room {
 	}
 
 	private void testMethod() {
-
+		
 	}
 
 	private static void printRiddles() {
@@ -61,6 +61,6 @@ public class RiddleRoom extends Room {
 	}
 
 	public void riddleHints(int riddleNum) {
-
+		
 	}
 }

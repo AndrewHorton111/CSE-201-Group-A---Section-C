@@ -75,6 +75,15 @@ public class GameManager {
 				Room room2 = new CellarRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room2;
 				break;
+			// Riddle room setup. Not sure if this is in the proper room order. 
+			// However this is an easy enough change to make
+			case 2:
+				roomDescription = "You move into a new mysterious room, there is something puzzling about your atmospher.\n"
+						+ " As you look around you notice a head on the wall and you approach it.\n"
+						+ " Suddenly the head starts to talk";
+				Room room3 = new RiddleRoom(roomDescription, roomCommands, items, objects);
+				roomList[i] = room3;
+				break;
 			default:
 				break;
 			}
