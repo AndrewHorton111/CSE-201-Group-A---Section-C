@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -6,35 +7,38 @@ import java.util.*;
 import java.util.Map;
 
 /**
- * Assisted heavily by 
+ * Assisted heavily by
  * https://github.com/mtcnbzks/java-wordle/blob/main/src/main/java/Wordle.java
  * 
  */
 public class PuzzleRoom extends Room {
 
-	public PuzzleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
+	protected int tryCount = 1;
+	protected ArrayList<String> words = new ArrayList<String>();
+	
+	public PuzzleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items,
+			ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}
-	
+
 	public void wordle() {
 		Scanner kb = new Scanner(System.in);
 		String guessWord;
-		
+
 		while (true) {
 			System.out.print("Enter your word: ");
 			guessWord = kb.nextLine().toUpperCase();
-			
+
 			if (guessWord.length() != 5) {
-				System.out.println("The length of the word must be five!"
-						+ " Try again!");
-			} else if (guessWord.equals(targetWord)) {
+				System.out.println("The length of the word must be five!" + " Try again!");
+			} else if (guessWord.equals(TARGET_WORD)) {
 				System.out.printf("You got it! It took you %d tries!", tryCount);
 				kb.close();
 				return;
 			} else {
 				checkWord(guessWord);
 			}
-			
+
 			if (tryCount > 6) {
 				System.out.println("You're out of tries :(");
 				System.out.println("The right answer was " + TARGET_WORD + ".");
@@ -43,78 +47,74 @@ public class PuzzleRoom extends Room {
 			}
 		}
 	}
-	
-	public int tryCount = 1;
-	public ArrayList<String> words = new ArrayList<String>();
-	//#1
-	words.add("MIAMI");
-	//#2
-	words.add("CLASS");
-	//#3
-	words.add("SMART");
-	//#4
-	words.add("MAJOR");
-	//#5
-	words.add("MINOR");
-	//#6
-	words.add("GRADE");
-	//#7
-	words.add("TUTOR");
-	//#8
-	words.add("TEACH");
-	//#9
-	words.add("HONOR");
-	//#10
-	words.add("BRICK");
 
-	
+	public void setWords() {
+		// #1
+		words.add("MIAMI");
+		// #2
+		words.add("CLASS");
+		// #3
+		words.add("SMART");
+		// #4
+		words.add("MAJOR");
+		// #5
+		words.add("MINOR");
+		// #6
+		words.add("GRADE");
+		// #7
+		words.add("TUTOR");
+		// #8
+		words.add("TEACH");
+		// #9
+		words.add("HONOR");
+		// #10
+		words.add("BRICK");
+	}
+
 	public String getWord(ArrayList<String> words) {
-		int randomIndex = (int) Math.random() * words.size());
+		int randomIndex = (int) Math.random() * words.size();
 		return words.get(randomIndex);
 	}
+
 	public final String TARGET_WORD = getWord(words);
-	//Portion assisted by 
-	//https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d
+	// Portion assisted by
+	// https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d
 	public final String ANSI_RESET = "\u001B[0m";
 	public final String ANSI_GREEN = "\u001B[32m";
 	public final String ANSI_YELLOW = "\u001B[33m";
-	
+
 	public String checkWord(String word) {
 		System.out.printf("Try #%d (%s) : \n", tryCount, word);
+		StringBuilder b = new StringBuilder();
 		for (int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
-			StringBuilder b = new StringBuilder();
-			
+
 			if (isCharacterInWord(c)) {
 				if (TARGET_WORD.charAt(i) == c) {
-					//STRING BUILDER: GREEN
+					// STRING BUILDER: GREEN
 					b.append(ANSI_GREEN + c + ANSI_RESET);
 				} else {
-					//STRING BUILDER: YELLOW
+					// STRING BUILDER: YELLOW
 					b.append(ANSI_YELLOW + c + ANSI_RESET);
 				}
 			} else {
-				//STRING BUILDER: WHITE
+				// STRING BUILDER: WHITE
 				b.append(c);
-				b.
 			}
 		}
 		tryCount++;
 		System.out.println();
 		return b.toString();
-		
-		
-		
+
 	}
-	
-	public void isCharacterInWord(char c) {
+
+	public boolean isCharacterInWord(char c) {
 		for (int i = 0; i < TARGET_WORD.length(); i++) {
-			if (targetWord.charAt(i) == c) {
+			if (TARGET_WORD.charAt(i) == c) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	
+
 }

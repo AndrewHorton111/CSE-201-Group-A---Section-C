@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class GameManager {
-	private static final int roomCount = 2; // 1st iteration
+	private static final int roomCount = 3; // 2nd iteration, added riddleRoom
 	
 	/**
 	 * Initializes all rooms for the game and stores them in an array for use
@@ -74,6 +74,15 @@ public class GameManager {
 			    
 				Room room2 = new CellarRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room2;
+				break;
+			// Riddle room setup. Not sure if this is in the proper room order. 
+			// However this is an easy enough change to make
+			case 2:
+				roomDescription = "You move into a new mysterious room, there is something puzzling about your atmospher.\n"
+						+ " As you look around you notice a head on the wall and you approach it.\n"
+						+ " Suddenly the head starts to talk";
+				Room room3 = new RiddleRoom(roomDescription, roomCommands, items, objects);
+				roomList[i] = room3;
 				break;
 			default:
 				break;
@@ -197,6 +206,7 @@ public class GameManager {
 			}
 
 			// Execute room-specific commands using reflection
+			// To use custom commands, add them to the roomCommands Map
 			if (roomCommands.containsKey(input.toLowerCase())) {
                 String methodName = roomCommands.get(input.toLowerCase());
                 try {
