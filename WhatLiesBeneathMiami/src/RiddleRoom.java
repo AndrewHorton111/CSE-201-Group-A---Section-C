@@ -15,7 +15,7 @@ public class RiddleRoom extends Room {
 
 
 	public RiddleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items,
-			ArrayList<String> objects, Player player) {
+			ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
