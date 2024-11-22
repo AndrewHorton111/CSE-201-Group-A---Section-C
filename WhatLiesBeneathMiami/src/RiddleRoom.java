@@ -12,14 +12,14 @@ import java.util.Random;
 
 public class RiddleRoom extends Room {
 
-	public static void main(String[] args) {
-
-
-	}
 
 	public RiddleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items,
 			ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
+	}
+	
+	public void run() {
+		
 	}
 
 	public static void printWelcome() {
@@ -28,7 +28,7 @@ public class RiddleRoom extends Room {
 		System.out.println("Are you prepared to test your intelligence?");
 		System.out.println();
 		System.out.println("Press 'Y' to recieve riddles");
-	}
+	}	
 
 	private static void printRiddles() {
 		// Load the riddles in

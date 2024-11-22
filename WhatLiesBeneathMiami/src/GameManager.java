@@ -205,19 +205,19 @@ public class GameManager {
 		        break;
 			}
 
-			// Execute room-specific commands using reflection
-			// To use custom commands, add them to the roomCommands Map
-			if (roomCommands.containsKey(input.toLowerCase())) {
-                String methodName = roomCommands.get(input.toLowerCase());
-                try {
-                    Method method = CommandHandler.class.getMethod(methodName);
-                    method.invoke(commandHandler);
-                } catch (Exception e) {
-
-                }
-            } else {
-                System.out.println("Unknown command. Type 'Help' for a list of commands.");
-            }
+			roomList[2].run();
+			
+//			if (roomCommands.containsKey(input.toLowerCase())) {
+//                String methodName = roomCommands.get(input.toLowerCase());
+//                try {
+//                    Method method = CommandHandler.class.getMethod(methodName);
+//                    method.invoke(commandHandler);
+//                } catch (Exception e) {
+//
+//                }
+//            } else {
+//                System.out.println("Unknown command. Type 'Help' for a list of commands.");
+//            }
 		} // End of while loop
 	}
 }
