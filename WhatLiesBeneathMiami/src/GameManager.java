@@ -205,7 +205,8 @@ public class GameManager {
 		        break;
 			}
 
-			roomList[2].run();
+			RiddleRoom Rr = (RiddleRoom) roomList[2];
+			Rr.run();
 			
 //			if (roomCommands.containsKey(input.toLowerCase())) {
 //                String methodName = roomCommands.get(input.toLowerCase());
