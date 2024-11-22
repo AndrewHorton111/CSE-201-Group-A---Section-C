@@ -20,6 +20,10 @@ public class PuzzleRoom extends Room {
 			ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}
+	
+	public void run() {
+		wordle();
+	}
 
 	public void wordle() {
 		Scanner kb = new Scanner(System.in);

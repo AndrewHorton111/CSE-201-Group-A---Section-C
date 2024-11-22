@@ -152,12 +152,10 @@ public class GameManager {
 		Room[] roomList = setUpRooms(); // Sets up rooms with items, objects, and commands
 		ArrayList<Item> inventory = new ArrayList<Item>(); // Player's starting inventory
 		Player player = new Player("Name", 20, inventory, roomList); // Create player character
-		
-		// TODO: Initialize enemy (e.g., for use in future combat scenarios)
-		Enemy enemy = null;
+
 		
 		System.out.println("Welcome to 'What Lies Beneath Miami!\n\n");
-		System.out.println(player.getCurrentRoom().roomDescription);
+		//System.out.println(player.getCurrentRoom().roomDescription);
 		Scanner scan = new Scanner(System.in);
 		CommandHandler commandHandler = new CommandHandler(player, scan); // Initialize command handler
 		
@@ -176,37 +174,47 @@ public class GameManager {
 			
 			// Handle common commands through switch case
 			switch (input.toLowerCase()) {
+			// Global
 			case "exit" :
 				exitProgram(scan);
 				break;
+			// Global
 			case "help" :
 				printHelpMessage(roomCommands);
 				break;
-			case "next room" :
-				player.nextRoom();
-				break;
+			// Local
 			case "items" :
 				currentRoom.displayItems();
 				break;
+			// Local
 			case "objects" :
 				currentRoom.displayObjects();
 				break;
+			// Local
 			case "examine":
 				commandHandler.examine();
 		        break;
+		    // Local
 		    case "take":
 		    	commandHandler.take();
 		        break;
+		    // Local
 		    case "equip":
 		        commandHandler.equip();
 		        break;
+		    // Local
 		    case "use":
 		        commandHandler.use();
 		        break;
+//			case "next room" :
+//				player.nextRoom();
+//			break;
 			}
 
+			
 			RiddleRoom Rr = (RiddleRoom) roomList[2];
-			Rr.run();
+			Rr.run(commandHandler);
+			
 			
 //			if (roomCommands.containsKey(input.toLowerCase())) {
 //                String methodName = roomCommands.get(input.toLowerCase());

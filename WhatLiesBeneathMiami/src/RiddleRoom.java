@@ -9,17 +9,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RiddleRoom extends Room {
 
 
 	public RiddleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items,
-			ArrayList<String> objects) {
+			ArrayList<String> objects, Player player) {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
-	public void run() {
-		
+	public void run(CommandHandler cmd) {
+		Scanner in = new Scanner(System.in);
+		System.out.println(roomDescription);
 	}
 
 	public static void printWelcome() {
