@@ -8,7 +8,6 @@
  * Joe Follarth, Jacob Artnak, Rhett Bilski, Adam Faglie, Andrew Horton, Koray Bayram
  */
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +15,16 @@ import java.util.Scanner;
 
 public class GameManager {
 	private static final int roomCount = 3; // 2nd iteration, added riddleRoom
+	
+	/**
+	 ***********************************READ ME**********************************
+	 * The run state for the game is how GameManager calls each separate room. I think 
+	 * it is easiest if each room has its own "run" method that controls everything it
+	 * needs for that specific room. A good example of this is in PuzzleRoom right now.
+	 ***********************************READ ME**********************************
+	 * 
+	 */
+	
 	
 	/**
 	 * Initializes all rooms for the game and stores them in an array for use
@@ -118,29 +127,6 @@ public class GameManager {
 			System.exit(0);
 		}
 	}
-
-	/**
-	 * Checks if a player's input is a valid command for the current room. Prints an
-	 * error message if the input is invalid.
-	 * 
-	 * @param roomCommands Map containing valid commands and associated methods for the room.
-	 * @param input Player's command input to be checked.
-	 * @return boolean True if input is a valid command; false otherwise.
-	 */
-	public static boolean checkInput(Map<String, String> roomCommands, String input) {
-		boolean isValid = false;
-		for (String command : roomCommands.keySet()) {
-			if (command.equalsIgnoreCase(input)) {
-				isValid = true;
-				break;
-			}
-		}
-		if (!isValid) {
-			System.out.println(input + " is not a valid command.");
-			System.out.println("Type \"Help\" to get a list of valid commands.");
-		}
-		return isValid;
-	}
 	
 	/**
 	 * Main method for the game. Initializes the game, sets up the rooms, and begins
@@ -165,10 +151,6 @@ public class GameManager {
 			System.out.println("> ");
 			String input = scan.nextLine().trim();
 
-			// Check if input is a valid command in the room's context
-			if (!checkInput(roomCommands, input)) {
-				continue;
-			}
 				
 			Room currentRoom = player.getCurrentRoom();
 			

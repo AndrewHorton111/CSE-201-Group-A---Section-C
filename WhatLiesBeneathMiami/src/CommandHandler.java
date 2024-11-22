@@ -5,6 +5,7 @@
  * the Player and Room classes to perform specific actions.
  */
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class CommandHandler {
@@ -21,6 +22,30 @@ public class CommandHandler {
         this.player = player;
         this.scan = scan;
     }
+    
+	/**
+	 * Checks if a player's input is a valid command for the current room. Prints an
+	 * error message if the input is invalid.
+	 * 
+	 * @param roomCommands Map containing valid commands and associated methods for the room.
+	 * @param input Player's command input to be checked.
+	 * @return boolean True if input is a valid command; false otherwise.
+	 */
+	public static boolean checkInput(Map<String, String> roomCommands, String input) {
+		boolean isValid = false;
+		for (String command : roomCommands.keySet()) {
+			if (command.equalsIgnoreCase(input)) {
+				isValid = true;
+				break;
+			}
+		}
+		if (!isValid) {
+			System.out.println(input + " is not a valid command.");
+			System.out.println("Type \"Help\" to get a list of valid commands.");
+		}
+		return isValid;
+	}
+
 
     /**
      * General "use" function to handle different items. Prompts the player to
