@@ -17,7 +17,7 @@ import java.util.Map;
 public class Room {
 
 	String roomDescription;
-	private Map<String, String> roomCommands;  // Stores command and corresponding action method name
+	protected Map<String, String> roomCommands;  // Stores command and corresponding action method name
 	private List<Item> items;  // List of items in the room
 	boolean roomCleared;
 	ArrayList<String> objects; // List of objects (e.g., table, cellar, etc.)

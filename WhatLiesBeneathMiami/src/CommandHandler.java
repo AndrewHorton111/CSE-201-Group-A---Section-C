@@ -46,6 +46,52 @@ public class CommandHandler {
 		return isValid;
 	}
 
+	/**
+	 * Contains common commands that every room needs access to. Moved to CommandHandler
+	 * 11/24/2024 so every room will have access
+	 * 
+	 * @param input The Command the user typed
+	 * @param currentRoom The current room that the player is in
+	 */
+	public void commonCommands(String input, Room currentRoom) {
+		// Handle common commands through switch case
+		// This will function the same way as in GameManager and can be 
+		// accessed by every room easily
+		switch (input.toLowerCase()) {
+			// Global
+			case "exit" :
+				GameManager.exitProgram(scan);
+				break;
+			// Global
+			case "help" :
+				GameManager.printHelpMessage(currentRoom.roomCommands);
+				break;
+			// Local
+			case "items" :
+				currentRoom.displayItems();
+				break;
+			// Local
+			case "objects" :
+				currentRoom.displayObjects();
+				break;
+			// Local
+			case "examine":
+				examine();
+		        break;
+		    // Local
+		    case "take":
+		    	take();
+		        break;
+		    // Local
+		    case "equip":
+		        equip();
+		        break;
+		    // Local
+		    case "use":
+		        use();
+		        break;
+		}
+	}
 
     /**
      * General "use" function to handle different items. Prompts the player to

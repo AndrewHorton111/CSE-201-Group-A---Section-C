@@ -66,7 +66,8 @@ public class GameManager {
 						+ " The only light comes from a narrow window high on the wall, casting a faint glow across the room.\n"
 						+ "As you sit up, you notice a simple wooden bench against one wall and a tattered piece of paper resting on it.\n"
 						+ "The air is heavy, and a deep silence fills the room.\n"
-						+ "A sturdy-looking door stands opposite you, closed tight.";
+						+ "A sturdy-looking door stands opposite you, closed tight."
+						+ "To see a list of available commands type \"help\"";
 				Room room1 = new BeginnerRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room1;
 				break;
@@ -154,46 +155,13 @@ public class GameManager {
 				
 			Room currentRoom = player.getCurrentRoom();
 			
-			// Handle common commands through switch case
-			switch (input.toLowerCase()) {
-			// Global
-			case "exit" :
-				exitProgram(scan);
-				break;
-			// Global
-			case "help" :
-				printHelpMessage(roomCommands);
-				break;
-			// Local
-			case "items" :
-				currentRoom.displayItems();
-				break;
-			// Local
-			case "objects" :
-				currentRoom.displayObjects();
-				break;
-			// Local
-			case "examine":
-				commandHandler.examine();
-		        break;
-		    // Local
-		    case "take":
-		    	commandHandler.take();
-		        break;
-		    // Local
-		    case "equip":
-		        commandHandler.equip();
-		        break;
-		    // Local
-		    case "use":
-		        commandHandler.use();
-		        break;
-//			case "next room" :
-//				player.nextRoom();
-//			break;
-			}
-
 			
+			// Switch case for commands was moved into CommandHandler
+			// See the commonCommands method within there for details
+			
+			BeginnerRoom Br = (BeginnerRoom) roomList[0];
+			Br.run(commandHandler);
+			commandHandler.nextRoom(player);
 			RiddleRoom Rr = (RiddleRoom) roomList[2];
 			Rr.run(commandHandler);
 			
@@ -212,3 +180,45 @@ public class GameManager {
 		} // End of while loop
 	}
 }
+
+
+
+
+
+//switch (input.toLowerCase()) {
+//// Global
+//case "exit" :
+//	exitProgram(scan);
+//	break;
+//// Global
+//case "help" :
+//	printHelpMessage(roomCommands);
+//	break;
+//// Local
+//case "items" :
+//	currentRoom.displayItems();
+//	break;
+//// Local
+//case "objects" :
+//	currentRoom.displayObjects();
+//	break;
+//// Local
+//case "examine":
+//	commandHandler.examine();
+//    break;
+//// Local
+//case "take":
+//	commandHandler.take();
+//    break;
+//// Local
+//case "equip":
+//    commandHandler.equip();
+//    break;
+//// Local
+//case "use":
+//    commandHandler.use();
+//    break;
+//case "next room" :
+//	player.nextRoom();
+//break;
+//}
