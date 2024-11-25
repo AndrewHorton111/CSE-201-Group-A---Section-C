@@ -149,11 +149,6 @@ public class GameManager {
 		// Main game loop for user input and command execution
 		while (true) {
 			Map<String, String> roomCommands = player.getCurrentRoom().getRoomCommands(); // Get commands for current room
-			System.out.println("> ");
-			String input = scan.nextLine().trim();
-
-				
-			Room currentRoom = player.getCurrentRoom();
 			
 			
 			// Switch case for commands was moved into CommandHandler
@@ -161,7 +156,6 @@ public class GameManager {
 			
 			BeginnerRoom Br = (BeginnerRoom) roomList[0];
 			Br.run(commandHandler);
-			commandHandler.nextRoom(player);
 			RiddleRoom Rr = (RiddleRoom) roomList[2];
 			Rr.run(commandHandler);
 			
