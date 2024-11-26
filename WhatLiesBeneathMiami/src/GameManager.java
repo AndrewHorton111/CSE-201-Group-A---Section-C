@@ -20,7 +20,11 @@ public class GameManager {
 	 ***********************************READ ME**********************************
 	 * The run state for the game is how GameManager calls each separate room. I think 
 	 * it is easiest if each room has its own "run" method that controls everything it
-	 * needs for that specific room. A good example of this is in PuzzleRoom right now.
+	 * needs for that specific room. A good example of this is in BeginnerRoom right now.
+	 * I think the best way to progress through the game would be using the open door method.
+	 * If anyone has a better or different idea feel free to suggest. Any code that was in 
+	 * this class that I changed I commented out and moved to the very bottom in case someone
+	 * needs it or we need to revert.
 	 ***********************************READ ME**********************************
 	 * 
 	 */
@@ -54,6 +58,7 @@ public class GameManager {
 			switch (i) {
 			case 0:
 				roomCommands.put("open door", "openDoor");
+				roomCommands.put("current room", null);
 				items.add(new Item("mysterious note", "A worn, faded note that reads:\n\n"
 						          	+ "Welcome to the depths...\n"
 						         	+ "Trust only what you can see.\n"
@@ -147,6 +152,8 @@ public class GameManager {
 		CommandHandler commandHandler = new CommandHandler(player, scan); // Initialize command handler
 		
 		// Main game loop for user input and command execution
+		// Might not be needed
+		// TODO: Determine if this is necessary
 		while (true) {
 			Map<String, String> roomCommands = player.getCurrentRoom().getRoomCommands(); // Get commands for current room
 			
@@ -155,22 +162,16 @@ public class GameManager {
 			// See the commonCommands method within there for details
 			
 			BeginnerRoom Br = (BeginnerRoom) roomList[0];
-			Br.run(commandHandler);
+			Br.run(commandHandler, player);
+			
+			// Add Cellar Room here
+			
 			RiddleRoom Rr = (RiddleRoom) roomList[2];
 			Rr.run(commandHandler);
 			
+			// Add the rest of the rooms in order here. Not entirely sure what
+			// the proper order is.
 			
-//			if (roomCommands.containsKey(input.toLowerCase())) {
-//                String methodName = roomCommands.get(input.toLowerCase());
-//                try {
-//                    Method method = CommandHandler.class.getMethod(methodName);
-//                    method.invoke(commandHandler);
-//                } catch (Exception e) {
-//
-//                }
-//            } else {
-//                System.out.println("Unknown command. Type 'Help' for a list of commands.");
-//            }
 		} // End of while loop
 	}
 }
@@ -179,6 +180,20 @@ public class GameManager {
 
 
 
+// Old system for handling commands
+//if (roomCommands.containsKey(input.toLowerCase())) {
+//String methodName = roomCommands.get(input.toLowerCase());
+//try {
+//  Method method = CommandHandler.class.getMethod(methodName);
+//  method.invoke(commandHandler);
+//} catch (Exception e) {
+//
+//}
+//} else {
+//System.out.println("Unknown command. Type 'Help' for a list of commands.");
+//}
+
+// Switch case that was moved into command handler
 //switch (input.toLowerCase()) {
 //// Global
 //case "exit" :

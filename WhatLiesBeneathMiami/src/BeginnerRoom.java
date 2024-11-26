@@ -1,7 +1,7 @@
 /**
  * Class: CSE 201
- * @author Jacob Artnak
- * @version 1.0
+ * @author Joe Follrath
+ * @version 1.0, Finished
  */
 
 
@@ -15,12 +15,12 @@ public class BeginnerRoom extends Room {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
-	public void run(CommandHandler ch) {
+	public void run(CommandHandler ch, Player player) {
 		System.out.println(roomDescription);
-		inputs(ch);
+		inputs(ch, player);
 	}
 	
-	private void inputs(CommandHandler ch) {
+	private void inputs(CommandHandler ch, Player player) {
 		// create the scanner for this room
 		Scanner in = new Scanner(System.in);
 		// start a loop to use while in the room
@@ -31,10 +31,15 @@ public class BeginnerRoom extends Room {
 			String input = in.nextLine().trim();
 			// check if the user command is a valid input
 			if (CommandHandler.checkInput(roomCommands, input)) {
+				// A switch case is used to determine the command. If it is a room
+				// special command then included as a case. The default case handles
+				// common commands using the CommandHandler class.
 				switch (input) {
 				case "open door":
 					openDoor(ch);
 					running = false;
+				case "current room":
+					currentRoom(player);
 				default:
 					ch.commonCommands(input, this);
 				}
@@ -43,8 +48,13 @@ public class BeginnerRoom extends Room {
 	}
 	
 	// Methods that handle room commands can be found below
+	// BeginnerRoom doesn't have many but more would be below if it did
 	private void openDoor(CommandHandler ch) {
 		ch.openDoor();
+	}
+	
+	private void currentRoom(Player player) {
+		System.out.println(player.getCurrentRoom());
 	}
 
 
