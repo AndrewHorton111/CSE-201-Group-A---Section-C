@@ -1,5 +1,5 @@
 /**
- * @Author Jacob Artnak
+ * @Author Jacob Artnak, Joe Follrath
  * This class handles player commands, such as using items, examining objects,
  * equipping items, and moving to the next room. Each command interacts with
  * the Player and Room classes to perform specific actions.
@@ -90,6 +90,17 @@ public class CommandHandler {
 		    case "use":
 		        use();
 		        break;
+		}
+	}
+	
+	/**
+	 * This will be used to explain the commands.
+	 * Helps provide clarity if the user is stuck on the controls.
+	 * TODO: Everything
+	 */
+	public void commonCommandHelp(String input) {
+		switch (input.toLowerCase()) {
+			
 		}
 	}
 

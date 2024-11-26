@@ -38,10 +38,13 @@ public class BeginnerRoom extends Room {
 				case "open door":
 					openDoor(ch);
 					running = false;
+					break;
 				case "current room":
 					currentRoom(player);
+					break;
 				default:
 					ch.commonCommands(input, this);
+					break;
 				}
 			}
 		}

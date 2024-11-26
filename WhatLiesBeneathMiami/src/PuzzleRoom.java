@@ -1,10 +1,12 @@
 
 /**
- * 
+ * Class: CSE 201
+ * @author: Rhett Bilski
+ * @version: 1.0
  */
 
 import java.util.*;
-import java.util.Map;
+// import java.util.Map;
 
 /**
  * Assisted heavily by
@@ -21,7 +23,7 @@ public class PuzzleRoom extends Room {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
-	public void run() {
+	public void run(CommandHandler ch) {
 		wordle();
 	}
 
@@ -75,11 +77,16 @@ public class PuzzleRoom extends Room {
 		words.add("BRICK");
 	}
 
+
 	public String getWord(ArrayList<String> words) {
+		setWords();
 		int randomIndex = (int) Math.random() * words.size();
 		return words.get(randomIndex);
 	}
 
+	/**
+	 * This should probably be moved to the top for clarity
+	 */
 	public final String TARGET_WORD = getWord(words);
 	// Portion assisted by
 	// https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d

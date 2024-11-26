@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class GameManager {
-	private static final int roomCount = 3; // 2nd iteration, added riddleRoom
+	private static final int roomCount = 4; // 2nd iteration, added riddleRoom
 	
 	/**
 	 ***********************************READ ME**********************************
@@ -71,7 +71,7 @@ public class GameManager {
 						+ " The only light comes from a narrow window high on the wall, casting a faint glow across the room.\n"
 						+ "As you sit up, you notice a simple wooden bench against one wall and a tattered piece of paper resting on it.\n"
 						+ "The air is heavy, and a deep silence fills the room.\n"
-						+ "A sturdy-looking door stands opposite you, closed tight."
+						+ "A sturdy-looking door stands opposite you, closed tight.\n"
 						+ "To see a list of available commands type \"help\"";
 				Room room1 = new BeginnerRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room1;
@@ -98,6 +98,11 @@ public class GameManager {
 						+ " Suddenly the head starts to talk";
 				Room room3 = new RiddleRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room3;
+				break;
+			case 3:
+				roomDescription = "This is the world room";
+				Room room4 = new PuzzleRoom(roomDescription, roomCommands, items, objects);
+				roomList[i] = room4;
 				break;
 			default:
 				break;
@@ -130,6 +135,7 @@ public class GameManager {
 		if (response.equalsIgnoreCase("Confirm")) {
 			System.out.println("Closing the program");
 			scan.close();
+			System.out.println("Closed");
 			System.exit(0);
 		}
 	}
@@ -146,7 +152,10 @@ public class GameManager {
 		Player player = new Player("Name", 20, inventory, roomList); // Create player character
 
 		
-		System.out.println("Welcome to 'What Lies Beneath Miami!\n\n");
+		System.out.println("Welcome to 'What Lies Beneath Miami!\n\n"
+				+ "The objective of the game is to beat each challenge in each new room you enter.\n"
+				+ "After you have beaten the challenge you can progress to the next one through the door.\n"
+				+ "Good Luck!");
 		//System.out.println(player.getCurrentRoom().roomDescription);
 		Scanner scan = new Scanner(System.in);
 		CommandHandler commandHandler = new CommandHandler(player, scan); // Initialize command handler
@@ -168,6 +177,9 @@ public class GameManager {
 			
 			RiddleRoom Rr = (RiddleRoom) roomList[2];
 			Rr.run(commandHandler);
+			
+			PuzzleRoom Pr = (PuzzleRoom) roomList[3];
+			Pr.run(commandHandler);
 			
 			// Add the rest of the rooms in order here. Not entirely sure what
 			// the proper order is.
