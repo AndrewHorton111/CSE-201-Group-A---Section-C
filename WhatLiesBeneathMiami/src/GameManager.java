@@ -176,7 +176,7 @@ public class GameManager {
 			// Add Cellar Room here
 			
 			RiddleRoom Rr = (RiddleRoom) roomList[2];
-			Rr.run(commandHandler);
+			Rr.run(commandHandler, player);
 			
 			PuzzleRoom Pr = (PuzzleRoom) roomList[3];
 			Pr.run(commandHandler);
