@@ -33,9 +33,10 @@ public class RiddleRoom extends Room {
 		Scanner in = new Scanner(System.in);
 		// start a loop to use while in the room
 		boolean running = true;
+		boolean solved = false;
+		// print the character indicating user input and prepare to receive input
+		int key = printRandomRiddle();
 		while (running) {
-			// print the character indicating user input and prepare to receive input
-			int key = printRandomRiddle();
 			System.out.println("> ");
 			String input = in.nextLine().trim();
 			// check if the user command is a valid input
@@ -46,15 +47,34 @@ public class RiddleRoom extends Room {
 				switch (input) {
 				case "answer":
 					answer(key);
+					solved = true;
+					break;
 				case "hint":
-
+				    hint(key);
+				    break;
+				case "open door":
+                    if (solved == true) {
+                        running = openDoor(ch, running);
+                    } else {
+                        System.out.println("Answer the riddle first");
+                    }
+                    break;
 				default:
 					ch.commonCommands(input, this);
 					break;
 				}
 			}
 		}
-		in.close();
+	}
+	
+	private static void hint(int key) {
+	    if (key == 1) {
+	        System.out.println("Everytime you walk you leave this behind");
+	    } else if (key == 2) {
+	        System.out.println("Be as light as a ---");
+	    } else {
+	        System.out.println("Homo Sapiens");
+	    }
 	}
 	
 	/**
@@ -79,7 +99,6 @@ public class RiddleRoom extends Room {
 				// firstGuessCorrect = true;
 			}
 		}
-		in.close();
 	}
 
 	/**
@@ -114,10 +133,15 @@ public class RiddleRoom extends Room {
 	
 	private static HashMap<Integer, String> riddleAnswers() {
 		HashMap<Integer, String> answers = new HashMap<>();
-		answers.put(1, "Foot Steps");
-		answers.put(2, "Feather");
-		answers.put(3,  "A human");
+		answers.put(1, "foot steps");
+		answers.put(2, "feather");
+		answers.put(3,  "a human");
 		return answers;
 	}
+	
+	private boolean openDoor(CommandHandler ch, boolean running) {
+        running = ch.openDoor();
+        return running;
+    }
 
 }
