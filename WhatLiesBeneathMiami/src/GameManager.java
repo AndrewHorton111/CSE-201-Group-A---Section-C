@@ -60,7 +60,7 @@ public class GameManager {
 								+ "The path forward is hidden in plain sight."));
 		        items.add(new Weapon("Sword", "A solid weapon.", 10, 0, 15));
 		        items.add(new Armor("Chestplate", "Protection from potential danger", 5, 15));
-		        items.add(new Potion("health potion", "A potion that replenishes your health", "health", 15, 2));
+		        items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 15, 2));
 				objects.add("door");
 
 				String roomDescription = "You awaken on the cold stone floor of a small, shadowy room.\n"
@@ -118,18 +118,35 @@ public class GameManager {
 			// Set up for the first battle room
 			case 4:
 				roomDescription = "Room 5 not completed yet!";
-				Room room5 = new FirstBattleRoom(roomDescription, roomCommands, items, objects);
-				roomList[i] = room5;
+				//Room room5 = new FirstBattleRoom(roomDescription, roomCommands, items, objects);
+				//roomList[i] = room5;
 				break;
 			// Set up for the first battle room
 			case 5:
-				roomDescription = "Room 6 not completed yet!";
+				roomDescription = "You move into a medium-sized room that is filled with millions of dollars in gold and jewlery.\n"
+						+ "Among the riches, you also find a large axe and a boots made of diamonds that you can take.\n"
+						+ "At the end of the room is an ominous door, that you feel hides your toughest challenge yet!";
+				roomCommands.add("open door");
+				roomCommands.add("items");
+				roomCommands.add("objects");
+				roomCommands.add("examine");
+				roomCommands.add("take");
+				items.add(new Weapon("Axe", "A strong and powerful weapon", 20, 0, 25));
+		        items.add(new Armor("Boots", "Boots that are have high damage reduction and high mobility", 10, 25));
+		        items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 15, 3));
 				Room room6 = new TreasureRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room6;
 				break;
 			// Set up for the first battle room
 			case 6:
-				roomDescription = "Room 7 not completed yet!";
+				roomDescription = "As you open the door, you move into a large arena.\n"
+						+ "Along the outside, you see that there are hundreds of goblins, trolls, and other monsters.\n"
+						+ "After a moment, a large creature drops from the ceiling to challenge you.\n"
+						+ "The crowd chants its name: \n"
+						+ "Crawdaddy! Crawdaddy! Crawdaddy!\n";
+				roomCommands.add("attack");
+				roomCommands.add("dodge");
+				roomCommands.add("heal");
 				Room room7 = new FinalBossRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room7;
 				break;
@@ -209,19 +226,19 @@ public class GameManager {
         enemyDialog.add("I'm going to eat you for dinner!");
         Enemy enemy1 = new Enemy("Bob the Troll", 25, enemyInventory, enemyDialog);
         FirstBattleRoom firstBR = (FirstBattleRoom) roomList[1];
-		firstBR.run(commandHandler, player, enemy1);
+		//firstBR.run(commandHandler, player, enemy1);
 
 		RiddleRoom rR = (RiddleRoom) roomList[2];
-		rR.run(commandHandler, player);
+		//rR.run(commandHandler, player);
 
 		PuzzleRoom pR = (PuzzleRoom) roomList[3];
-		pR.run(commandHandler);
+		//pR.run(commandHandler);
 
 		MiniBossRoom mBR = (MiniBossRoom) roomList[4];
 		//mBR.run(commandHandler, player);
 		
 		TreasureRoom tR = (TreasureRoom) roomList[5];
-		//tR.run(commandHandler, player);
+		tR.run(commandHandler, player);
 		
 		// Creates the enemy the player will battle in the final boss room.
         ArrayList<Item> enemyInventory3 = new ArrayList<Item>();
@@ -233,7 +250,7 @@ public class GameManager {
         ArrayList<String> enemyDialog3 = new ArrayList<String>();
         enemyDialog.add("You'll never leave this dungeon!");
         enemyDialog.add("You're going to have to dropout from life!");
-        Enemy enemy3 = new Enemy("Bob the Troll", 25, enemyInventory3, enemyDialog3);
+        Enemy enemy3 = new Enemy("The Crawdaddy", 100, enemyInventory3, enemyDialog3);
 		FinalBossRoom finalBR = (FinalBossRoom) roomList[6];
 		finalBR.run(commandHandler, player, enemy3);
 

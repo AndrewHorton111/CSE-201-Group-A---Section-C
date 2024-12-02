@@ -58,8 +58,4 @@ public class BeginnerRoom extends Room {
 	private void currentRoom(Player player) {
 		System.out.println(player.getCurrentRoom());
 	}
-
-
-
-
 }

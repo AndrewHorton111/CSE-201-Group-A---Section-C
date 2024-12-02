@@ -76,6 +76,7 @@ public class CommandHandler {
 		// Local
 		case "items":
 			currentRoom.displayItems();
+			System.out.println(currentRoom);
 			break;
 		// Local
 		case "objects":
@@ -87,7 +88,7 @@ public class CommandHandler {
 			break;
 		// Local
 		case "take":
-			take();
+			take(currentRoom);
 			break;
 		// Local
 		case "equip":
@@ -193,13 +194,17 @@ public class CommandHandler {
 	/**
 	 * Prompts the player to take an item from the room. If the item exists in the
 	 * current room, it is added to the player's inventory.
+	 * 
+	 * @param currentRoom
 	 */
-	public void take() {
+	public void take(Room currentRoom) {
 		System.out.println("What would you like to take");
 		String itemName = scan.nextLine();
 
-		Room currentRoom = player.getCurrentRoom();
+		System.out.println(currentRoom);
 		Item item = currentRoom.getItem(itemName);
+		System.out.println(item);
+		System.out.println(itemName);
 		if (item != null) {
 			System.out.println("You took the " + item.name + ".");
 			player.addToInventory(item);
