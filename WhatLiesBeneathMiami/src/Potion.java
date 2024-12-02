@@ -24,7 +24,7 @@ public class Potion extends Item {
 	 * @param amount
 	 */
 	public Potion(String name, String itemDescription) {
-		this(name, itemDescription, "health", 1, 1);
+		this(name, itemDescription, "health", 15, 1);
 	}
 	
 	public Potion(String name, String itemDescription, String type, int effectPower, int amount) {
