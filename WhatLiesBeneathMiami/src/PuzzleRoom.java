@@ -1,4 +1,3 @@
-
 /**
  * Class: CSE 201
  * @author: Rhett Bilski
@@ -7,6 +6,7 @@
 
 import java.util.*;
 // import java.util.Map;
+import java.util.Random;
 
 /**
  * Assisted heavily by
@@ -80,7 +80,9 @@ public class PuzzleRoom extends Room {
 
 	public String getWord(ArrayList<String> words) {
 		setWords();
-		int randomIndex = (int) Math.random() * words.size();
+		//int randomIndex = (int) (Math.random() * words.size());
+		Random random = new Random();
+		int randomIndex = random.nextInt(words.size());
 		return words.get(randomIndex);
 	}
 
