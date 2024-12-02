@@ -76,7 +76,6 @@ public class CommandHandler {
 		// Local
 		case "items":
 			currentRoom.displayItems();
-			System.out.println(currentRoom);
 			break;
 		// Local
 		case "objects":
@@ -201,10 +200,7 @@ public class CommandHandler {
 		System.out.println("What would you like to take");
 		String itemName = scan.nextLine();
 
-		System.out.println(currentRoom);
 		Item item = currentRoom.getItem(itemName);
-		System.out.println(item);
-		System.out.println(itemName);
 		if (item != null) {
 			System.out.println("You took the " + item.name + ".");
 			player.addToInventory(item);
