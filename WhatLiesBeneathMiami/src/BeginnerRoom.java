@@ -6,12 +6,11 @@
 
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class BeginnerRoom extends Room {
 	
-	public BeginnerRoom(String roomDescription, Map<String,String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
+	public BeginnerRoom(String roomDescription, ArrayList<String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
@@ -36,8 +35,7 @@ public class BeginnerRoom extends Room {
 				// common commands using the CommandHandler class.
 				switch (input) {
 				case "open door":
-					openDoor(ch);
-					running = false;
+					running = openDoor(ch, running);
 					break;
 				case "current room":
 					currentRoom(player);
@@ -52,8 +50,9 @@ public class BeginnerRoom extends Room {
 	
 	// Methods that handle room commands can be found below
 	// BeginnerRoom doesn't have many but more would be below if it did
-	private void openDoor(CommandHandler ch) {
-		ch.openDoor();
+	private boolean openDoor(CommandHandler ch, boolean running) {
+		running = ch.openDoor();
+		return running;
 	}
 	
 	private void currentRoom(Player player) {

@@ -6,14 +6,13 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
 public class RiddleRoom extends Room {
 
 
-	public RiddleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items,
+	public RiddleRoom(String roomDescription, ArrayList<String> roomCommands, ArrayList<Item> items,
 			ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}

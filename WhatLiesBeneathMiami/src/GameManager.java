@@ -1,3 +1,4 @@
+
 /**
  * Class: CSE 201
  * This is the master class that has all of the main method and everything
@@ -9,27 +10,24 @@
  */
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class GameManager {
 	private static final int roomCount = 4; // 2nd iteration, added riddleRoom
-	
+
 	/**
-	 ***********************************READ ME**********************************
-	 * The run state for the game is how GameManager calls each separate room. I think 
-	 * it is easiest if each room has its own "run" method that controls everything it
-	 * needs for that specific room. A good example of this is in BeginnerRoom right now.
-	 * I think the best way to progress through the game would be using the open door method.
-	 * If anyone has a better or different idea feel free to suggest. Any code that was in 
-	 * this class that I changed I commented out and moved to the very bottom in case someone
-	 * needs it or we need to revert.
-	 ***********************************READ ME**********************************
+	 *********************************** READ ME********************************** The run state for the game is how
+	 * GameManager calls each separate room. I think it is easiest if each room has
+	 * its own "run" method that controls everything it needs for that specific
+	 * room. A good example of this is in BeginnerRoom right now. I think the best
+	 * way to progress through the game would be using the open door method. If
+	 * anyone has a better or different idea feel free to suggest. Any code that was
+	 * in this class that I changed I commented out and moved to the very bottom in
+	 * case someone needs it or we need to revert. READ
+	 * ME**********************************
 	 * 
 	 */
-	
-	
+
 	/**
 	 * Initializes all rooms for the game and stores them in an array for use
 	 * throughout game play. Each room is configured with specific commands, items,
@@ -40,34 +38,33 @@ public class GameManager {
 	public static Room[] setUpRooms() {
 		Room[] roomList = new Room[roomCount];
 		for (int i = 0; i < roomCount; i++) {
-			Map<String, String> roomCommands = new HashMap<>();
+			ArrayList<String> roomCommands = new ArrayList<String>();
 			ArrayList<Item> items = new ArrayList<>();
 			ArrayList<String> objects = new ArrayList<>();
-			
+
 			// Basic commands available in every room.
-			roomCommands.put("exit", "");
-			roomCommands.put("help", "");
-			roomCommands.put("next room", "");
-			roomCommands.put("items", "");
-			roomCommands.put("objects", "");
-			roomCommands.put("examine", "");
-			roomCommands.put("equip", "");
-			roomCommands.put("take", "");
-			roomCommands.put("use", "");
-			
+			roomCommands.add("exit");
+			roomCommands.add("help");
+			roomCommands.add("next room");
+			roomCommands.add("items");
+			roomCommands.add("objects");
+			roomCommands.add("examine");
+			roomCommands.add("equip");
+			roomCommands.add("take");
+			roomCommands.add("use");
+
 			switch (i) {
 			case 0:
-				roomCommands.put("open door", "openDoor");
-				roomCommands.put("current room", null);
-				items.add(new Item("mysterious note", "A worn, faded note that reads:\n\n"
-						          	+ "Welcome to the depths...\n"
-						         	+ "Trust only what you can see.\n"
-						           	+ "Shadows conceal more than they reveal.\n"
-						           	+ "The path forward is hidden in plain sight."));
+				roomCommands.add("open door");
+				roomCommands.add("current room");
+				items.add(new Item("mysterious note",
+						"A worn, faded note that reads:\n\n" + "Welcome to the depths...\n"
+								+ "Trust only what you can see.\n" + "Shadows conceal more than they reveal.\n"
+								+ "The path forward is hidden in plain sight."));
 				items.add(new Potion("health potion", "A potion that replenishes your health"));
-				objects.add("door"); 
-				
-				String roomDescription =  "You awaken on the cold stone floor of a small, shadowy room.\n"
+				objects.add("door");
+
+				String roomDescription = "You awaken on the cold stone floor of a small, shadowy room.\n"
 						+ " The only light comes from a narrow window high on the wall, casting a faint glow across the room.\n"
 						+ "As you sit up, you notice a simple wooden bench against one wall and a tattered piece of paper resting on it.\n"
 						+ "The air is heavy, and a deep silence fills the room.\n"
@@ -77,20 +74,23 @@ public class GameManager {
 				roomList[i] = room1;
 				break;
 			case 1:
-				items.add(new Item("rusty key", "The key is cold and covered in rust. It’s likely been here for years, maybe decades."));
-			    items.add(new Item("flashlight", "An old flashlight with scratches on the surface. The battery is weak, but it flickers to life when you switch it on."));
-			    items.add(new Item("journal page", "A brittle piece of paper with faded writing. One line catches your eye: ‘Beware the shadows – not all that hides is empty."));
-			    
-			    objects.add("cellar");
-			    roomDescription =  "You arrive in a damp, shadow-filled cellar.\n"
-			    		+ "The walls are lined with stone, dripping with moisture, and an uneasy silence fills the air.\n"
-			    		+ "A faint, stale smell surrounds you.\n"
-			    		+ "Scattered across a dusty wooden table nearby are a few items: an old flashlight, a rusted key, and a torn page from a journal.";
-			    
-				Room room2 = new CellarRoom(roomDescription, roomCommands, items, objects);
-				roomList[i] = room2;
+				items.add(new Item("rusty key",
+						"The key is cold and covered in rust. It’s likely been here for years, maybe decades."));
+				items.add(new Item("flashlight",
+						"An old flashlight with scratches on the surface. The battery is weak, but it flickers to life when you switch it on."));
+				items.add(new Item("journal page",
+						"A brittle piece of paper with faded writing. One line catches your eye: ‘Beware the shadows – not all that hides is empty."));
+
+				objects.add("cellar");
+				roomDescription = "You arrive in a damp, shadow-filled cellar.\n"
+						+ "The walls are lined with stone, dripping with moisture, and an uneasy silence fills the air.\n"
+						+ "A faint, stale smell surrounds you.\n"
+						+ "Scattered across a dusty wooden table nearby are a few items: an old flashlight, a rusted key, and a torn page from a journal.";
+
+				// Room room2 = new CellarRoom(roomDescription, roomCommands, items, objects);
+				// roomList[i] = room2;
 				break;
-			// Riddle room setup. Not sure if this is in the proper room order. 
+			// Riddle room setup. Not sure if this is in the proper room order.
 			// However this is an easy enough change to make
 			case 2:
 				roomDescription = "You move into a new mysterious room, there is something puzzling about your atmospher.\n"
@@ -101,8 +101,8 @@ public class GameManager {
 				break;
 			case 3:
 				roomDescription = "This is the world room";
-				Room room4 = new PuzzleRoom(roomDescription, roomCommands, items, objects);
-				roomList[i] = room4;
+				// Room room4 = new PuzzleRoom(roomDescription, roomCommands, items, objects);
+				// roomList[i] = room4;
 				break;
 			default:
 				break;
@@ -110,19 +110,19 @@ public class GameManager {
 		}
 		return roomList;
 	}
-	
+
 	/**
 	 * Prints a list of all valid commands for the current room.
 	 * 
 	 * @param roomCommands Map of command strings available in the current room.
 	 */
-	public static void printHelpMessage(Map<String, String> roomCommands) {
+	public static void printHelpMessage(ArrayList<String> roomCommands) {
 		System.out.println("List of available commands: ");
-		for (String command : roomCommands.keySet()) {
+		for (String command : roomCommands) {
 			System.out.println("\"" + command + "\"");
 		}
 	}
-	
+
 	/**
 	 * Terminates the game if the user confirms their choice. The program asks the
 	 * player to type "Confirm" to exit. If confirmed, the game is closed.
@@ -139,10 +139,11 @@ public class GameManager {
 			System.exit(0);
 		}
 	}
-	
+
 	/**
 	 * Main method for the game. Initializes the game, sets up the rooms, and begins
-	 * the main game loop where the player inputs commands and interacts with the game.
+	 * the main game loop where the player inputs commands and interacts with the
+	 * game.
 	 * 
 	 * @param args Command-line arguments, if any.
 	 */
@@ -151,46 +152,35 @@ public class GameManager {
 		ArrayList<Item> inventory = new ArrayList<Item>(); // Player's starting inventory
 		Player player = new Player("Name", 20, inventory, roomList); // Create player character
 
-		
 		System.out.println("Welcome to 'What Lies Beneath Miami!\n\n"
 				+ "The objective of the game is to beat each challenge in each new room you enter.\n"
 				+ "After you have beaten the challenge you can progress to the next one through the door.\n"
 				+ "Good Luck!");
-		//System.out.println(player.getCurrentRoom().roomDescription);
+		// System.out.println(player.getCurrentRoom().roomDescription);
 		Scanner scan = new Scanner(System.in);
 		CommandHandler commandHandler = new CommandHandler(player, scan); // Initialize command handler
+
 		
-		// Main game loop for user input and command execution
-		// Might not be needed
-		// TODO: Determine if this is necessary
-		while (true) {
-			Map<String, String> roomCommands = player.getCurrentRoom().getRoomCommands(); // Get commands for current room
-			
-			
-			// Switch case for commands was moved into CommandHandler
-			// See the commonCommands method within there for details
-			
-			BeginnerRoom Br = (BeginnerRoom) roomList[0];
-			Br.run(commandHandler, player);
-			
-			// Add Cellar Room here
-			
-			RiddleRoom Rr = (RiddleRoom) roomList[2];
-			Rr.run(commandHandler, player);
-			
-			PuzzleRoom Pr = (PuzzleRoom) roomList[3];
-			Pr.run(commandHandler);
-			
-			// Add the rest of the rooms in order here. Not entirely sure what
-			// the proper order is.
-			
-		} // End of while loop
+		// Switch case for commands was moved into CommandHandler
+		// See the commonCommands method within there for details
+		
+		// Runs the "main method" of each room. 
+		BeginnerRoom Br = (BeginnerRoom) roomList[0];
+		Br.run(commandHandler, player);
+
+		// Add Cellar Room here
+
+		RiddleRoom Rr = (RiddleRoom) roomList[2];
+		Rr.run(commandHandler, player);
+
+		PuzzleRoom Pr = (PuzzleRoom) roomList[3];
+		Pr.run(commandHandler);
+
+		// Add the rest of the rooms in order here. Not entirely sure what
+		// the proper order is.
+
 	}
 }
-
-
-
-
 
 // Old system for handling commands
 //if (roomCommands.containsKey(input.toLowerCase())) {

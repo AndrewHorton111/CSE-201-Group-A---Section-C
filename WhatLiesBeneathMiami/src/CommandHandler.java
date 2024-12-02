@@ -5,7 +5,7 @@
  * the Player and Room classes to perform specific actions.
  */
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CommandHandler {
@@ -31,9 +31,9 @@ public class CommandHandler {
 	 * @param input Player's command input to be checked.
 	 * @return boolean True if input is a valid command; false otherwise.
 	 */
-	public static boolean checkInput(Map<String, String> roomCommands, String input) {
+	public static boolean checkInput(ArrayList<String> roomCommands, String input) {
 		boolean isValid = false;
-		for (String command : roomCommands.keySet()) {
+		for (String command : roomCommands) {
 			if (command.equalsIgnoreCase(input)) {
 				isValid = true;
 				break;
@@ -273,13 +273,15 @@ public class CommandHandler {
      * a door if present in the room. If successful, advances the player to
      * the next room.
      */
-    public void openDoor() {
+    public boolean openDoor() {
         Room currentRoom = player.getCurrentRoom();
         if (currentRoom.containsObject("door")) {
             System.out.println("You open the door. It creaks loudly, revealing the path ahead.");
-            player.nextRoom(); // Mark room as cleared after action
+            return false;
+            //player.nextRoom(); // Mark room as cleared after action
         } else {
             System.out.println("There's no door to open here.");
+            return true;
         }
     }
 }

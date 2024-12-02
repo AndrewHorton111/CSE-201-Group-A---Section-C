@@ -10,14 +10,12 @@
  */
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Room {
 
 	String roomDescription;
-	protected Map<String, String> roomCommands;  // Stores command and corresponding action method name
+	protected ArrayList<String> roomCommands;  // Stores command and corresponding action method name
 	private List<Item> items;  // List of items in the room
 	boolean roomCleared;
 	ArrayList<String> objects; // List of objects (e.g., table, cellar, etc.)
@@ -31,7 +29,7 @@ public class Room {
 	 * @param items           A list of items available in the room.
 	 * @param objects         A list of objects present in the room.
 	 */
-	public Room(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
+	public Room(String roomDescription, ArrayList<String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
 		super();
 		this.roomDescription = roomDescription;
 		this.roomCommands = roomCommands;
@@ -47,7 +45,7 @@ public class Room {
 	 * @return A map of roomCommands, where the keys are command strings and values
 	 *         are associated method names.
 	 */
-	public Map<String, String> getRoomCommands() {
+	public ArrayList<String> getRoomCommands() {
         return roomCommands;
     }
 

@@ -5,7 +5,7 @@
  */
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Scanner;
 
 /**
  * 
@@ -24,7 +24,7 @@ public class MiniBossRoom extends Room {
 	
 	Player player;
 	
-	public MiniBossRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects, Player player) {
+	public MiniBossRoom(String roomDescription, ArrayList<String> roomCommands, ArrayList<Item> items, ArrayList<String> objects, Player player) {
 		super(roomDescription, roomCommands, items, objects);
 		this.player = player;
 	}
@@ -40,7 +40,7 @@ public class MiniBossRoom extends Room {
 		while (player.getHealth() > 0 && miniBoss.getHealth() > 0) {
 			System.out.println("\nYour Health: " + player.getHealth());
 			System.out.println("Mini Boss Health: " + miniBoss.getHealth());
-			System.out.println(("Choose your action: [1] Attack [2] Dodge [3] Heal");
+			System.out.println(("Choose your action: [1] Attack [2] Dodge [3] Heal"));
 			
 			String action = scanner.nextLine();
 			switch(action) {

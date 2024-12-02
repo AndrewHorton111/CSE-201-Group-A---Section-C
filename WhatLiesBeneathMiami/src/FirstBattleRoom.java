@@ -1,16 +1,18 @@
 /**
- * 
+ * Class: CSE 201
+ * @version 1.0
+ * @author: Andrew Horton
  */
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
- * 
+ * This is the class for room number 2, which contains
+ * the first enemy the player will fight. 
  */
 public class FirstBattleRoom extends Room {
 
-	public FirstBattleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
+	public FirstBattleRoom(String roomDescription, ArrayList<String> roomCommands, ArrayList<Item> items, ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}
 	
