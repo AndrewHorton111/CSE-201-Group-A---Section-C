@@ -60,7 +60,7 @@ public class GameManager {
 								+ "The path forward is hidden in plain sight."));
 		        items.add(new Weapon("Sword", "A solid weapon.", 10, 0, 15));
 		        items.add(new Armor("Chestplate", "Protection from potential danger", 5, 15));
-		        items.add(new Potion("health potion", "A potion that replenishes your health"));
+		        items.add(new Potion("health potion", "A potion that replenishes your health", "health", 15, 2));
 				objects.add("door");
 
 				String roomDescription = "You awaken on the cold stone floor of a small, shadowy room.\n"

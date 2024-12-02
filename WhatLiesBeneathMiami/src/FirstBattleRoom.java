@@ -35,7 +35,7 @@ public class FirstBattleRoom extends Room {
 			if (!CommandHandler.checkInput(roomCommands, input)) {
 				continue;
 			}
-			
+			System.out.println();
 			// If input is valid, do the corresponding action
 			switch(input) {
 				case "attack":
@@ -71,7 +71,7 @@ public class FirstBattleRoom extends Room {
 	        System.exit(0);
 	        
 	    } else {
-	        System.out.println("You have defeated the Troll and move on to the next room!");
+	        System.out.println("You have defeated the Troll and are able to move forward!");
 	    }
 	}	
 }

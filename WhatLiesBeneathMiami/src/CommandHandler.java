@@ -1,13 +1,12 @@
 
 /**
- * @Author Jacob Artnak, Joe Follrath
+ * @author Jacob Artnak, Joe Follrath, Andrew Horton
  * This class handles player commands, such as using items, examining objects,
  * equipping items, and moving to the next room. Each command interacts with
  * the Player and Room classes to perform specific actions.
  */
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -263,8 +262,7 @@ public class CommandHandler {
 			System.out.println("You expertly move out of the way of the attack!");
 			return false;
 		} else {
-			System.out
-					.println("You can't get your footing, and don't have a higher chance to dodge the incoming attack");
+			System.out.println("You can't get your footing, and don't have a higher chance to dodge the incoming attack");
 			return true;
 		}
 
@@ -285,7 +283,7 @@ public class CommandHandler {
 		} else {
 			player.modifyHealth(pot.effectPower);
 			player.removeFromInventory(pot.name);
-			System.out.println("You used a Health Potion. You have " + pot.amount + " left");
+			System.out.println("You were healed for " + pot.effectPower + " health. You have " + pot.amount + " potions left");
 		}
 	}
 
