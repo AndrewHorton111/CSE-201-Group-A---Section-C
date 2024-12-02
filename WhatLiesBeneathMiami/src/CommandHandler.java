@@ -205,18 +205,41 @@ public class CommandHandler {
 	}
 
 	/**
-	 * This method gets the weapon from the Player and uses its attributes to modify
-	 * the health of the Enemy.
+	 * This method gets the weapon from the attacking character and
+	 * uses its attributes to modify the health of the attacked.
 	 * 
-	 * @param player The player attacking the enemy.
-	 * @param enemy  The enemy being attacked by the player.
+	 * @param attacker The character attacking the attacked.
+	 * @param enemy  The character being attacked by the attacker.
 	 */
-	public void attack(Player player, Enemy enemy) {
-		Item weapon = player.inventory.get(0);
-		Weapon playerWeapon = (Weapon) weapon;
-		int damage = playerWeapon.getDamage();
-		enemy.modifyHealth(damage * -1);
-		System.out.println("You dealt " + damage + " damage to " + enemy.getName() + ".");
+	public void attack(Character attacker, Character attacked) {
+		Item weapon = attacker.inventory.get(0);
+		Weapon attackerWeapon = (Weapon) weapon;
+		Item armor = attacker.inventory.get(1);
+		Armor attackedArmor = (Armor) armor;
+		Random random = new Random();
+		
+		// See if the attacked dodges the attack
+		if (random.nextInt(101) < attackedArmor.getDodgeChance()) {
+			System.out.println(attacked.getName() + " dodged the attack!");
+		} else {
+			// Since the attack lands, see if the attack is a critical hit
+			int damage;
+			if (random.nextInt(101) < attackerWeapon.getCritChance()) {
+				System.out.println(attacker.getName() + " got a CRITICAL hit!");
+				damage = attackerWeapon.getDamage() * 2;
+			} else {
+				System.out.println(attacker.getName() + "'s attack hit!");
+				damage = attackerWeapon.getDamage();
+			}
+			// Deal damage to the attacked
+			damage = damage + random.nextInt(6) - attackedArmor.getDefense();
+			if (damage <= 0) {
+				System.out.println("The attack dealt no damage");
+			} else {
+				attacked.modifyHealth(-1 * damage);
+				System.out.println(attacker.getName() + " dealt " + damage + " damage!");
+			}
+		}
 	}
 
 	/**
@@ -226,7 +249,7 @@ public class CommandHandler {
 	 * @param player The player attempting to dodge the attack.
 	 */
 	public boolean dodge(Player player) {
-		Item armor = player.inventory.get(0);
+		Item armor = player.inventory.get(1);
 		Armor playerArmor = (Armor) armor;
 		int currentDodgeChance = playerArmor.getDodgeChance() * 4;
 		Random random = new Random();

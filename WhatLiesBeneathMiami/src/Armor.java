@@ -27,7 +27,21 @@ public class Armor extends Item {
 		this.dodgeChance = dodgeChance;
 	}
 	
+	/**
+	 * Returns the dodgeChance of the armor
+	 * 
+	 * @return dodgeChance
+	 */
 	public int getDodgeChance() {
 		return dodgeChance;
+	}
+	
+	/**
+	 * Returns the defense of the armor
+	 * 
+	 * @return defense
+	 */
+	public int getDefense() {
+		return defense;
 	}
 }

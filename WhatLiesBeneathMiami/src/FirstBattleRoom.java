@@ -28,7 +28,7 @@ public class FirstBattleRoom extends Room {
 			System.out.println("You have " + player.health + " health left");
 			System.out.println(enemy.name + " has " + enemy.health + " health left");
 			System.out.println(("Choose your action: Attack, Dodge, or Heal"));
-			System.out.println("> ");
+			System.out.print("> ");
 			
 			// Get input from the user and check if it is valid
 			String input = scan.nextLine();
@@ -59,10 +59,7 @@ public class FirstBattleRoom extends Room {
 			
 			// The enemy attacks if it is still alive
 	        if (enemy.getHealth() > 0) {
-	            int enemyDamage = calculateDamage("enemy");
-	            player.setHealth(player.getHealth() - enemyDamage);
-	            System.out.println("The Mini Boss attacks and deals " + enemyDamage + " damage to you!");
-	            displayDialog();
+	        	ch.attack(enemy, player);
 	        }
 		} // End of while loop
 		
@@ -76,31 +73,5 @@ public class FirstBattleRoom extends Room {
 	    } else {
 	        System.out.println("You have defeated the Troll and move on to the next room!");
 	    }
-	}
-	
-	/*
-	 * Calculates the characters damage taken during the fight
-	 */
-	public int calculateDamage(String attacker) {
-		int playerDamage = 10; // base damage
-		Weapon sword = (Weapon) player.getItem("sword");
-		if (sword != null) {
-			playerDamage = sword.damage;
-		}
-		int miniBossDamage = 15; // adjust this for difficulty scaling
-		
-		if (attacker.equals("player")) {
-			return (int)(Math.random() * playerDamage);
-		} else  {
-			return (int)(Math.random() * miniBossDamage);
-		}
 	}	
-	
-	/*
-	 * displays mini boss's dialog during the fight
-	 */
-	public void displayDialog() {
-		int index = (int)(Math.random() * dialogList.size());
-		System.out.println(miniBoss.getName() + ": " + dialogList.get(index));
-	}
 }

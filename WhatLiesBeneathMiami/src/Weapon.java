@@ -11,7 +11,7 @@
 public class Weapon extends Item {
 
 	int damage;
-	int hitChance;
+	//int hitChance;
 	int critChance;
 
 	/**
@@ -26,7 +26,7 @@ public class Weapon extends Item {
 	public Weapon(String name, String itemDescription, int damage, int hitChance, int critChance) {
 		super(name, itemDescription);
 		this.damage = damage;
-		this.hitChance = hitChance;
+		//this.hitChance = hitChance;
 		this.critChance = critChance;
 	}
 
@@ -34,9 +34,9 @@ public class Weapon extends Item {
 		return this.damage;
 	}
 
-	public double getHitChance() {
-		return this.hitChance;
-	}
+	//public double getHitChance() {
+		//return this.hitChance;
+	//}
 
 	public double getCritChance() {
 		return this.critChance;

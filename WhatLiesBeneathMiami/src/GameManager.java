@@ -175,6 +175,10 @@ public class GameManager {
 	public static void main(String[] args) {
 		Room[] roomList = setUpRooms(); // Sets up rooms with items, objects, and commands
 		ArrayList<Item> inventory = new ArrayList<Item>(); // Player's starting inventory
+		Weapon wep1 = new Weapon("Weapon 1", "A weapon", 5, 80, 10);
+        Armor arm1 = new Armor("Armor 1", "A piece of armor", 3, 10);
+        inventory.add(wep1);
+        inventory.add(arm1);
 		Player player = new Player("Name", 20, inventory, roomList); // Create player character
 
 		System.out.println("Welcome to 'What Lies Beneath Miami!\n\n"
