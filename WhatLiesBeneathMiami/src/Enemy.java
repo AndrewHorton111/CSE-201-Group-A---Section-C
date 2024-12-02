@@ -33,6 +33,7 @@ public class Enemy extends Character {
 	 * This method prints a random dialog from its dialogList
 	 */
 	public String getRandomDialog() {
+		Random random = new Random();
 		int randNum = random.nextInt(dialogList.size());
 		return dialogList.get(randNum);
 	}

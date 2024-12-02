@@ -3,6 +3,7 @@
  * Class: CSE 201
  * @version 1.0
  * @author: Andrew Horton
+ * @author: Adam Faglie
  */
 
 import java.util.ArrayList;
@@ -23,9 +24,12 @@ public class FinalBossRoom extends Room {
 		Scanner scan = new Scanner(System.in);
 		// While loop that runs until either the player
 		// or the enemy is defeated.
-		int turns = 0;
+		int turns = 1;
 		while (player.getHealth() > 0 && enemy.getHealth() > 0) {
-			System.out.println("\nYou have " + player.health + " health left");
+			if (turns % 3 == 0) { // Give a warning before the boss's double turn
+				System.out.println("\nThe Crawdaddy is winding up for a strong attack. Watch Out!");
+        	}
+			System.out.println("You have " + player.health + " health left");
 			System.out.println(enemy.name + " has " + enemy.health + " health left");
 			System.out.println(("Choose your action: Attack, Dodge, or Heal"));
 			System.out.print("> ");
@@ -35,6 +39,7 @@ public class FinalBossRoom extends Room {
 			if (!CommandHandler.checkInput(roomCommands, input)) {
 				continue;
 			}
+			boolean doDodge = false;
 			System.out.println();
 			// If input is valid, do the corresponding action
 			switch(input) {
@@ -43,10 +48,7 @@ public class FinalBossRoom extends Room {
 	                break;
 	             
 				case "dodge":
-					boolean enemyAttack = ch.dodge(player);
-					if (!enemyAttack) {
-						continue;
-					}
+					doDodge = ch.dodge(player);
 	                break;
 	                
 				case "heal":
@@ -58,13 +60,11 @@ public class FinalBossRoom extends Room {
 			}
 			
 			// The enemy attacks if it is still alive
-	        if (enemy.getHealth() > 0) {
+	        if (enemy.getHealth() > 0 && !doDodge) {
 	        	ch.attack(enemy, player);
 	        	// Every 3 turns, the boss attacks twice in one turn.
 	        	if (turns % 3 == 0) {
 	        		ch.attack(enemy, player);
-	        	} else if (turns % 3 == 2) { // Give a warning before the boss's double turn
-	        		System.out.println("The boss is winding up for a strong attack. Watch Out!");
 	        	}
 	        	System.out.println(enemy.getName() + ": " + enemy.getRandomDialog());
 	        }
@@ -73,13 +73,13 @@ public class FinalBossRoom extends Room {
 		
 		// When the while loop ends, check if the user or enemy won.
 		if (player.getHealth() <= 0) {
-	        System.out.println("You have been defeated by the The Boss");
+	        System.out.println("You have been defeated by The Crawdaddy");
 	        System.out.println("GAME OVER");
 	        // Close the program if the user lost.
 	        System.exit(0);
 	        
 	    } else {
-	        System.out.println("You have defeated the Boss and are able to move out of the dungeon!");
+	        System.out.println("You have defeated The Crawdaddy and are able to move out of the dungeon!");
 	    }
 	}
 }

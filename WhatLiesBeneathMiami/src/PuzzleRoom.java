@@ -39,7 +39,7 @@ public class PuzzleRoom extends Room {
 				System.out.println("The length of the word must be five!" + " Try again!");
 			} else if (guessWord.equals(TARGET_WORD)) {
 				System.out.printf("You got it! It took you %d tries!", tryCount);
-				kb.close();
+				System.out.println();
 				return;
 			} else {
 				checkWord(guessWord);
@@ -48,7 +48,6 @@ public class PuzzleRoom extends Room {
 			if (tryCount > 6) {
 				System.out.println("You're out of tries :(");
 				System.out.println("The right answer was " + TARGET_WORD + ".");
-				kb.close();
 				return;
 			}
 		}
