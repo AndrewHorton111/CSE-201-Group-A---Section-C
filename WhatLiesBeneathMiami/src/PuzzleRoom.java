@@ -18,7 +18,7 @@ public class PuzzleRoom extends Room {
 	protected int tryCount = 1;
 	protected ArrayList<String> words = new ArrayList<String>();
 	
-	public PuzzleRoom(String roomDescription, Map<String, String> roomCommands, ArrayList<Item> items,
+	public PuzzleRoom(String roomDescription, ArrayList<String> roomCommands, ArrayList<Item> items,
 			ArrayList<String> objects) {
 		super(roomDescription, roomCommands, items, objects);
 	}
