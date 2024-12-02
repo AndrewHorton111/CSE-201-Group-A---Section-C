@@ -25,7 +25,7 @@ public class FirstBattleRoom extends Room {
 		// While loop that runs until either the player
 		// or the enemy is defeated.
 		while (player.getHealth() > 0 && enemy.getHealth() > 0) {
-			System.out.println("You have " + player.health + " health left");
+			System.out.println("\nYou have " + player.health + " health left");
 			System.out.println(enemy.name + " has " + enemy.health + " health left");
 			System.out.println(("Choose your action: Attack, Dodge, or Heal"));
 			System.out.print("> ");

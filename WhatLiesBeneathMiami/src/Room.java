@@ -110,6 +110,7 @@ public class Room {
 		for (Item i : items) {
 			if (i == item) {
 				items.remove(item);
+				return;
 			}
 		}
 	}

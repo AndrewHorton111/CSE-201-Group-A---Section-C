@@ -58,9 +58,9 @@ public class GameManager {
 						"A worn, faded note that reads:\n\n" + "Welcome to the depths...\n"
 								+ "Trust only what you can see.\n" + "Shadows conceal more than they reveal.\n"
 								+ "The path forward is hidden in plain sight."));
-				items.add(new Potion("health potion", "A potion that replenishes your health"));
 		        items.add(new Weapon("Sword", "A solid weapon.", 10, 0, 15));
 		        items.add(new Armor("Chestplate", "Protection from potential danger", 5, 15));
+		        items.add(new Potion("health potion", "A potion that replenishes your health"));
 				objects.add("door");
 
 				String roomDescription = "You awaken on the cold stone floor of a small, shadowy room.\n"
@@ -179,8 +179,8 @@ public class GameManager {
 	public static void main(String[] args) {
 		Room[] roomList = setUpRooms(); // Sets up rooms with items, objects, and commands
 		ArrayList<Item> inventory = new ArrayList<Item>(); // Player's starting inventory
-		Weapon wep1 = new Weapon("No Weapon", "A weapon", 0, 0, 0);
-        Armor arm1 = new Armor("No Armor", "A piece of armor", 0, 0);
+		Weapon wep1 = new Weapon("No Weapon", "", 0, 0, 0);
+        Armor arm1 = new Armor("No Armor", "", 0, 0);
         inventory.add(wep1);
         inventory.add(arm1);
 		Player player = new Player("Name", 20, inventory, roomList); // Create player character
