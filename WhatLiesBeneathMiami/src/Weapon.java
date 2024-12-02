@@ -10,35 +10,35 @@
  */
 public class Weapon extends Item {
 
-	int damage;
-	//int hitChance;
-	int critChance;
+    int damage;
+    //int hitChance;
+    int critChance;
 
-	/**
-	 * Constructor for the Weapon class.
-	 * 
-	 * @param name
-	 * @param itemDescription
-	 * @param damage
-	 * @param hitChance
-	 * @param critChance
-	 */
-	public Weapon(String name, String itemDescription, int damage, int hitChance, int critChance) {
-		super(name, itemDescription);
-		this.damage = damage;
-		//this.hitChance = hitChance;
-		this.critChance = critChance;
-	}
+    /**
+     * Constructor for the Weapon class.
+     * 
+     * @param name
+     * @param itemDescription
+     * @param damage
+     * @param hitChance
+     * @param critChance
+     */
+    public Weapon(String name, String itemDescription, int damage, int hitChance, int critChance) {
+        super(name, itemDescription);
+        this.damage = damage;
+        //this.hitChance = hitChance;
+        this.critChance = critChance;
+    }
 
-	public int getDamage() {
-		return this.damage;
-	}
+    public int getDamage() {
+        return this.damage;
+    }
 
-	//public double getHitChance() {
-		//return this.hitChance;
-	//}
+    //public double getHitChance() {
+        //return this.hitChance;
+    //}
 
-	public double getCritChance() {
-		return this.critChance;
-	}
+    public double getCritChance() {
+        return this.critChance;
+    }
 }
