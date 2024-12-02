@@ -228,13 +228,13 @@ public class GameManager {
         enemyDialog.add("I'm going to eat you for dinner!");
         Enemy enemy1 = new Enemy("Bob the Troll", 25, enemyInventory, enemyDialog);
         FirstBattleRoom firstBR = (FirstBattleRoom) roomList[1];
-		//firstBR.run(commandHandler, player, enemy1);
+		firstBR.run(commandHandler, player, enemy1);
 
 		RiddleRoom rR = (RiddleRoom) roomList[2];
-		//rR.run(commandHandler, player);
+		rR.run(commandHandler, player);
 
 		PuzzleRoom pR = (PuzzleRoom) roomList[3];
-		//pR.run(commandHandler);
+		pR.run(commandHandler);
 
 		MiniBossRoom mBR = (MiniBossRoom) roomList[4];
 		//mBR.run(commandHandler, player);
