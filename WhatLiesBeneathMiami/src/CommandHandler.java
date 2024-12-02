@@ -70,6 +70,10 @@ public class CommandHandler {
 		case "help":
 			GameManager.printHelpMessage(currentRoom.roomCommands);
 			break;
+		// Global
+			case "inventory":
+			player.displayInventory();
+			break;
 		// Local
 		case "items":
 			currentRoom.displayItems();

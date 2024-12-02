@@ -108,7 +108,7 @@ public class Room {
 	 */
 	public void removeItem(Item item) {
 		for (Item i : items) {
-			if (i.name.equalsIgnoreCase(item.name)) {
+			if (i == item) {
 				items.remove(item);
 			}
 		}

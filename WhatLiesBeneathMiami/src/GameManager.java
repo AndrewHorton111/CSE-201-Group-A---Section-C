@@ -45,6 +45,7 @@ public class GameManager {
 			// Basic commands available in every room.
 			roomCommands.add("exit");
 			roomCommands.add("help");
+			roomCommands.add("inventory");
 
 			switch (i) {
 			case 0:
