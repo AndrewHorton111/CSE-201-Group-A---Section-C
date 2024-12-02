@@ -26,4 +26,8 @@ public class Armor extends Item {
 		this.defense = defense;
 		this.dodgeChance = dodgeChance;
 	}
+	
+	public int getDodgeChance() {
+		return dodgeChance;
+	}
 }

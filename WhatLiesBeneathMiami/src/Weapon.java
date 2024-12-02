@@ -4,17 +4,16 @@
  * @version 1.0
  */
 
-
 /**
- * This class is the child class of Item and it holds has the information
- * needed to deal damage to another Character. 
+ * This class is the child class of Item and it holds has the information needed
+ * to deal damage to another Character.
  */
 public class Weapon extends Item {
 
 	int damage;
 	int hitChance;
 	int critChance;
-	
+
 	/**
 	 * Constructor for the Weapon class.
 	 * 
@@ -29,5 +28,17 @@ public class Weapon extends Item {
 		this.damage = damage;
 		this.hitChance = hitChance;
 		this.critChance = critChance;
+	}
+
+	public int getDamage() {
+		return this.damage;
+	}
+
+	public double getHitChance() {
+		return this.hitChance;
+	}
+
+	public double getCritChance() {
+		return this.critChance;
 	}
 }

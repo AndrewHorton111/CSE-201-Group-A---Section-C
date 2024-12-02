@@ -90,6 +90,9 @@ public class GameManager {
 			 */
 			// Set up for the first battle room
 			case 1:
+				roomCommands.add("attack");
+				roomCommands.add("dodge");
+				roomCommands.add("heal");
 				roomDescription = "You enter a circular room with two torches providing light, one on each side.\n"
 						+ "Illuminated by the light, a troll stands in the center of the room, blocking the path forward,\n"
 						+ "You must defeat the troll in order to move through the dungeon!\n";
@@ -154,13 +157,12 @@ public class GameManager {
 	 */
 	public static void exitProgram(Scanner scan) {
 		System.out.println("Type \"Confirm\" to exit the program, or anything else to cancel");
-		String response = scan.nextLine();
-		if (response.equalsIgnoreCase("Confirm")) {
-			System.out.println("Closing the program");
-			scan.close();
-			System.out.println("Closed");
-			System.exit(0);
-		}
+        String response = scan.nextLine();
+        if (response.equalsIgnoreCase("Confirm")) {
+            System.out.println("Closing the program");
+            scan.close();
+            System.exit(0);
+        }
 	}
 
 	/**
@@ -200,9 +202,9 @@ public class GameManager {
         ArrayList<String> enemyDialog = new ArrayList<String>();
         enemyDialog.add("You'll pay for that.");
         enemyDialog.add("That hurts");
-        Enemy enemy = new Enemy("Bob the Troll", 25, enemyInventory, enemyDialog);
+        Enemy enemy1 = new Enemy("Bob the Troll", 25, enemyInventory, enemyDialog);
         FirstBattleRoom firstBR = (FirstBattleRoom) roomList[1];
-		//firstBR.run(commandHandler, player);
+		firstBR.run(commandHandler, player, enemy1);
 
 		RiddleRoom rR = (RiddleRoom) roomList[2];
 		rR.run(commandHandler, player);
