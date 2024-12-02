@@ -30,7 +30,7 @@ public class TreasureRoom extends Room {
 		boolean running = true;
 		while (running) {
 			// print the character indicating user input and prepare to receive input
-			System.out.println("> ");
+			System.out.print("> ");
 			String input = in.nextLine().trim();
 			// check if the user command is a valid input
 			if (CommandHandler.checkInput(roomCommands, input)) {

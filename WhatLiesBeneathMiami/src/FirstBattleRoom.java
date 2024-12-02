@@ -3,6 +3,7 @@
  * Class: CSE 201
  * @version 1.0
  * @author: Andrew Horton
+ * @author: Adam Faglie
  */
 
 import java.util.ArrayList;

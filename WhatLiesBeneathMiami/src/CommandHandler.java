@@ -117,6 +117,7 @@ public class CommandHandler {
 	 */
 	public void use() {
 		System.out.println("What would you like to use?");
+		System.out.print("> ");
 		String itemName = scan.nextLine();
 
 		// Check if the item is in the player's inventory
@@ -157,6 +158,7 @@ public class CommandHandler {
 	 */
 	public void examine() {
 		System.out.println("What would you like to examine?");
+		System.out.print("> ");
 		String itemName = scan.nextLine();
 
 		Room currentRoom = player.getCurrentRoom();
@@ -175,6 +177,7 @@ public class CommandHandler {
 	 */
 	public void equip() {
 		System.out.println("What would you like to equip?");
+		System.out.print("> ");
 		String itemName = scan.nextLine();
 
 		Item item = player.getItem(itemName);
@@ -198,6 +201,7 @@ public class CommandHandler {
 	 */
 	public void take(Room currentRoom) {
 		System.out.println("What would you like to take");
+		System.out.print("> ");
 		String itemName = scan.nextLine();
 
 		Item item = currentRoom.getItem(itemName);
@@ -226,12 +230,12 @@ public class CommandHandler {
 		
 		// See if the attacked dodges the attack
 		if (random.nextInt(101) < attackedArmor.getDodgeChance()) {
-			System.out.println(attacked.getName() + " dodged the attack!");
+			System.out.println(attacked.getName() + " dodged the attack from " + attacker.getName() + "!");
 		} else {
 			// Since the attack lands, see if the attack is a critical hit
 			int damage;
 			if (random.nextInt(101) < attackerWeapon.getCritChance()) {
-				System.out.println(attacker.getName() + " got a CRITICAL hit!");
+				System.out.println(attacker.getName() + " got a CRITICAL HIT!");
 				damage = attackerWeapon.getDamage() * 2;
 			} else {
 				System.out.println(attacker.getName() + "'s attack hit!");
@@ -261,10 +265,10 @@ public class CommandHandler {
 		Random random = new Random();
 		if (random.nextInt(101) < currentDodgeChance) {
 			System.out.println("You expertly move out of the way of the attack!");
-			return false;
+			return true;
 		} else {
 			System.out.println("You can't get your footing, and don't have a higher chance to dodge the incoming attack");
-			return true;
+			return false;
 		}
 
 	}

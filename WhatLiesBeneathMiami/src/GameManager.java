@@ -119,9 +119,14 @@ public class GameManager {
 				break;
 			// Set up for the first battle room
 			case 4:
-				roomDescription = "Room 5 not completed yet!";
-				//Room room5 = new FirstBattleRoom(roomDescription, roomCommands, items, objects);
-				//roomList[i] = room5;
+				roomDescription = "The next room you enter is very dark, with the only light coming from the door behind you.\n"
+						+ "However, you hear a faint rattle sound coming from underneath the ground in the room.\n"
+						+ "Suddenly, Jill the Snake appears from the ground and immediatly moves to attack you!";
+				roomCommands.add("attack");
+				roomCommands.add("dodge");
+				roomCommands.add("heal");
+				Room room5 = new MiniBossRoom(roomDescription, roomCommands, items, objects);
+				roomList[i] = room5;
 				break;
 			// Set up for the first battle room
 			case 5:
@@ -134,7 +139,7 @@ public class GameManager {
 				roomCommands.add("examine");
 				roomCommands.add("take");
 				items.add(new Weapon("Axe", "A strong and powerful weapon", 20, 0, 25));
-		        items.add(new Armor("Boots", "Boots that are have high damage reduction and high mobility", 10, 25));
+		        items.add(new Armor("Boots", "Boots that are have high damage reduction and high mobility", 12, 30));
 		        items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 15, 3));
 				Room room6 = new TreasureRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room6;
@@ -199,14 +204,17 @@ public class GameManager {
         Armor arm1 = new Armor("No Armor", "", 0, 0);
         inventory.add(wep1);
         inventory.add(arm1);
-		Player player = new Player("Name", 20, inventory, roomList); // Create player character
+        Scanner scan = new Scanner(System.in);
+        System.out.println("What is your name adventurer?");
+        System.out.print("> ");
+        String playerName = scan.nextLine();
+		Player player = new Player(playerName, 30, inventory, roomList); // Create player character
 
 		System.out.println("Welcome to 'What Lies Beneath Miami!\n\n"
 				+ "The objective of the game is to beat each challenge in each new room you enter.\n"
 				+ "After you have beaten the challenge you can progress to the next one through the door.\n"
 				+ "Good Luck!");
 		// System.out.println(player.getCurrentRoom().roomDescription);
-		Scanner scan = new Scanner(System.in);
 		CommandHandler commandHandler = new CommandHandler(player, scan); // Initialize command handler
 
 		// Switch case for commands was moved into CommandHandler
@@ -236,22 +244,33 @@ public class GameManager {
 		PuzzleRoom pR = (PuzzleRoom) roomList[3];
 		pR.run(commandHandler);
 
+		// Creates the enemy the player will battle in the mini boss room.
+        ArrayList<Item> enemyInventory2 = new ArrayList<Item>();
+        Weapon wep2 = new Weapon("Weapon 2", "A weapon", 6, 0, 15);
+        Armor arm2 = new Armor("Armor 2", "A piece of armor", 4, 15);
+        enemyInventory2.add(wep2);
+        enemyInventory2.add(arm2);
+        // Dialog for the enemy
+        ArrayList<String> enemyDialog2 = new ArrayList<String>();
+        enemyDialog2.add("You'll regret fighting me!");
+        enemyDialog2.add("Enjoy you're last moments!");
+        Enemy enemy2 = new Enemy("Jill the Snake", 50, enemyInventory2, enemyDialog2);
 		MiniBossRoom mBR = (MiniBossRoom) roomList[4];
-		//mBR.run(commandHandler, player);
+		mBR.run(commandHandler, player, enemy2);
 		
 		TreasureRoom tR = (TreasureRoom) roomList[5];
 		tR.run(commandHandler, player);
 		
 		// Creates the enemy the player will battle in the final boss room.
         ArrayList<Item> enemyInventory3 = new ArrayList<Item>();
-        Weapon wep3 = new Weapon("Weapon 3", "A weapon", 10, 0, 20);
+        Weapon wep3 = new Weapon("Weapon 3", "A weapon", 10, 0, 15);
         Armor arm3 = new Armor("Armor 3", "A piece of armor", 5, 20);
-        enemyInventory.add(wep3);
-        enemyInventory.add(arm3);
+        enemyInventory3.add(wep3);
+        enemyInventory3.add(arm3);
         // Dialog for the enemy
         ArrayList<String> enemyDialog3 = new ArrayList<String>();
-        enemyDialog.add("You'll never leave this dungeon!");
-        enemyDialog.add("You're going to have to dropout from life!");
+        enemyDialog3.add("You'll never leave this dungeon!");
+        enemyDialog3.add("You're going to have to dropout from life!");
         Enemy enemy3 = new Enemy("The Crawdaddy", 100, enemyInventory3, enemyDialog3);
 		FinalBossRoom finalBR = (FinalBossRoom) roomList[6];
 		finalBR.run(commandHandler, player, enemy3);
