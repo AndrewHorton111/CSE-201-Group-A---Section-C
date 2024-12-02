@@ -23,7 +23,7 @@ public class RiddleRoom extends Room {
 	 */
 	public void run(CommandHandler cmd, Player player) {
 		System.out.println(roomDescription);
-		System.out.println("To answer the riddle first type \"answer\"\n"
+		System.out.println("\nTo answer the riddle first type \"answer\"\n"
 				+ "for a hint type \"hint\"");
 		inputs(cmd, player);
 	}
@@ -31,11 +31,13 @@ public class RiddleRoom extends Room {
 	private void inputs(CommandHandler ch, Player player) {
 		// create the scanner for this room
 		Scanner in = new Scanner(System.in);
+		int key = randomRiddleNumber();
+		HashMap<Integer, String> riddles = riddleStorage();
 		// start a loop to use while in the room
 		boolean running = true;
 		while (running) {
 			// print the character indicating user input and prepare to receive input
-			int key = printRandomRiddle();
+			System.out.println(riddles.get(key));
 			System.out.println("> ");
 			String input = in.nextLine().trim();
 			// check if the user command is a valid input
@@ -46,8 +48,11 @@ public class RiddleRoom extends Room {
 				switch (input) {
 				case "answer":
 					answer(key);
+					running = false;
+					break;
 				case "hint":
-
+					hint(key);
+					break;
 				default:
 					ch.commonCommands(input, this);
 					break;
@@ -62,39 +67,52 @@ public class RiddleRoom extends Room {
 	 */
 	private static void answer(int key) {
 		//  boolean firstGuessCorrect = false;
-		boolean correct = false;
 		HashMap<Integer, String> riddleAnswers = riddleAnswers();
 		Scanner in = new Scanner(System.in);
-		while (!correct) {
-			System.out.println("Enter your answer: ");
-			System.out.println("> ");
-			String answer = in.nextLine().toLowerCase();
-			
-			if (answer.equals(riddleAnswers.get(key))) {
-				System.out.println("Congratulations adventurer, you have answered my riddle\n"
-						+ "To move onto the next room you may open the door and proceed");
-				correct = true;
-			} else {
-				System.out.println("Incorrect Answer, Try again");
-				// firstGuessCorrect = true;
-			}
+		System.out.println("Enter your answer: ");
+		System.out.print("> ");
+		String answer = in.nextLine().toLowerCase();
+		if (answer.equalsIgnoreCase(riddleAnswers.get(key))) {
+			System.out.println("Congratulations adventurer, you have answered my riddle\n"
+					+ "You may now move onto the next challenge");
+		} else {
+			System.out.println("Incorrect Answer, Try again");
 		}
+		
 		in.close();
+	}
+	
+	/**
+	 * Prints a hint for the riddle
+	 * @param key Used to identify the hint for the specific riddle
+	 */
+	private static void hint(int key) {
+		switch (key) {
+		// hint for the footsteps riddle
+		case 1:
+			System.out.println("You take them as you walk around");
+			break;
+		// hint for feather riddle
+		case 2:
+			System.out.println("Birds are covered in them");
+			break;
+		// hint for the riddle of the sphynx
+		case 3:
+			System.out.println("This is a very famous riddle also known as the"
+					+ " Riddle of the Sphynx");
+			break;
+		}	
 	}
 
 	/**
-	 * responsible for retrieving a random riddle that will be
-	 * displayed to the user
+	 * Generates a random number that will be used as a key
+	 * this key is used in a hashmap for riddles and answers
 	 */
-	private static int printRandomRiddle() {
+	private static int randomRiddleNumber() {
 		// Load the riddles in
-		HashMap<Integer, String> riddles = riddleStorage();
 		// used for picking a random number that corresponds to a riddle
 		Random random = new Random();
 		Integer randomNumber = random.nextInt(3) + 1;
-
-		// Print out the riddle here
-		System.out.println(riddles.get(randomNumber));
 		return randomNumber;
 	}
 

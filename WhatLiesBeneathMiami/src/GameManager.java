@@ -106,9 +106,11 @@ public class GameManager {
 			case 2:
 				roomCommands.add("hint");
 				roomCommands.add("answer");
-				roomDescription = "You move into a new mysterious room, there is something puzzling about your atmospher.\n"
-						+ " As you look around you notice a head on the wall and you approach it.\n"
-						+ " Suddenly the head starts to talk";
+				roomDescription = "\nYou move into a new mysterious room, there is something puzzling about your atmosphere.\n"
+						+ "As you look around you notice a head on the wall and you approach it.\n"
+						+ "Suddenly the head starts to talk.\n"
+						+ "\"To advance you must beat me in a battle of wits.\"\n"
+						+ "\"Answer my question and you may pass.\"";
 				Room room3 = new RiddleRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room3;
 				break;
