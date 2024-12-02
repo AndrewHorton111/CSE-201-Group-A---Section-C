@@ -101,5 +101,16 @@ public class Room {
 		System.out.println(result);
 	}
 	
-	
+	/**
+	 * Removes an item from a room's item list.
+	 * 
+	 * @param itemName
+	 */
+	public void removeItem(Item item) {
+		for (Item i : items) {
+			if (i.name.equalsIgnoreCase(item.name)) {
+				items.remove(item);
+			}
+		}
+	}
 }

@@ -84,7 +84,7 @@ public class Player extends Character {
 			Weapon wep = (Weapon) inventory.get(0);
 			System.out.println("Weapon: " + wep.name + " - " + wep.itemDescription);
 			System.out.println("\tWeapon Damage: " + wep.damage);
-			System.out.println("\tWeapon Hit Chance: " + wep.hitChance);
+			//System.out.println("\tWeapon Hit Chance: " + wep.hitChance);
 			System.out.println("\tWeapon Crit Chance: " + wep.critChance);
 		}
 

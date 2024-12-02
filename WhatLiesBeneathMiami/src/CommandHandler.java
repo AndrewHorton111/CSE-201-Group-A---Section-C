@@ -7,6 +7,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -199,6 +200,7 @@ public class CommandHandler {
 		if (item != null) {
 			System.out.println("You took the " + item.name + ".");
 			player.addToInventory(item);
+			currentRoom.removeItem(item);
 		} else {
 			System.out.println("There is no " + itemName + " in the room.");
 		}
