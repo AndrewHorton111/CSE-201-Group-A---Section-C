@@ -305,9 +305,14 @@ public class CommandHandler {
 	public boolean openDoor() {
 		Room currentRoom = player.getCurrentRoom();
 		if (currentRoom.containsObject("door")) {
-			System.out.println("You open the door. It creaks loudly, revealing the path ahead.");
-			return false;
-			// player.nextRoom(); // Mark room as cleared after action
+			if (currentRoom.getItem("sword") == null && currentRoom.getItem("chestplate") == null && currentRoom.getItem("health potion") == null) {
+				System.out.println("You open the door. It creaks loudly, revealing the path ahead.");
+				return false;
+				// player.nextRoom(); // Mark room as cleared after action
+			} else {
+				System.out.println("You should take the sword, chestplate, and health potions so that you are prepared for the dangers that lie ahead.");
+				return true;
+			}
 		} else {
 			System.out.println("There's no door to open here.");
 			return true;

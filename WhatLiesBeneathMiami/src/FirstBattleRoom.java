@@ -60,6 +60,7 @@ public class FirstBattleRoom extends Room {
 			// The enemy attacks if it is still alive
 	        if (enemy.getHealth() > 0) {
 	        	ch.attack(enemy, player);
+	        	System.out.println(enemy.getName() + ": " + enemy.getRandomDialog());
 	        }
 		} // End of while loop
 		

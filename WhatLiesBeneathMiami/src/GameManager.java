@@ -199,14 +199,14 @@ public class GameManager {
 		
 		// Creates the enemy the player will battle in the first battle room.
         ArrayList<Item> enemyInventory = new ArrayList<Item>();
-        Weapon wep = new Weapon("Weapon 1", "A weapon", 5, 80, 10);
+        Weapon wep = new Weapon("Weapon 1", "A weapon", 3, 0, 10);
         Armor arm = new Armor("Armor 1", "A piece of armor", 3, 10);
         enemyInventory.add(wep);
         enemyInventory.add(arm);
         // Dialog for the enemy
         ArrayList<String> enemyDialog = new ArrayList<String>();
-        enemyDialog.add("You'll pay for that.");
-        enemyDialog.add("That hurts");
+        enemyDialog.add("You'll pay for that!");
+        enemyDialog.add("I'm going to eat you for dinner!");
         Enemy enemy1 = new Enemy("Bob the Troll", 25, enemyInventory, enemyDialog);
         FirstBattleRoom firstBR = (FirstBattleRoom) roomList[1];
 		firstBR.run(commandHandler, player, enemy1);
@@ -223,9 +223,22 @@ public class GameManager {
 		TreasureRoom tR = (TreasureRoom) roomList[5];
 		//tR.run(commandHandler, player);
 		
+		// Creates the enemy the player will battle in the final boss room.
+        ArrayList<Item> enemyInventory3 = new ArrayList<Item>();
+        Weapon wep3 = new Weapon("Weapon 3", "A weapon", 10, 0, 20);
+        Armor arm3 = new Armor("Armor 3", "A piece of armor", 5, 20);
+        enemyInventory.add(wep3);
+        enemyInventory.add(arm3);
+        // Dialog for the enemy
+        ArrayList<String> enemyDialog3 = new ArrayList<String>();
+        enemyDialog.add("You'll never leave this dungeon!");
+        enemyDialog.add("You're going to have to dropout from life!");
+        Enemy enemy3 = new Enemy("Bob the Troll", 25, enemyInventory3, enemyDialog3);
 		FinalBossRoom finalBR = (FinalBossRoom) roomList[6];
-		//finalBR.run(commandHandler, player);
+		finalBR.run(commandHandler, player, enemy3);
 
+		// The epilogue to the story, wrapping up the story and the game.
+		System.out.println("You escape the dungeon and save Miami. Yippie :)");
 	}
 }
 
