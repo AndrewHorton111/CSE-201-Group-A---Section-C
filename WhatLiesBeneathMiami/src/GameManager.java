@@ -114,7 +114,7 @@ public class GameManager {
 				roomList[i] = room3;
 				break;
 			case 3:
-				roomDescription = "This is the world room";
+				roomDescription = "This is the wordle room";
 				Room room4 = new PuzzleRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room4;
 				break;
