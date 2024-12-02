@@ -104,6 +104,8 @@ public class GameManager {
 				roomList[i] = room2;
 				break;
 			case 2:
+				roomCommands.add("hint");
+				roomCommands.add("answer");
 				roomDescription = "You move into a new mysterious room, there is something puzzling about your atmospher.\n"
 						+ " As you look around you notice a head on the wall and you approach it.\n"
 						+ " Suddenly the head starts to talk";
