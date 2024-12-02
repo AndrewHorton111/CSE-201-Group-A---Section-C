@@ -58,13 +58,16 @@ public class GameManager {
 								+ "Trust only what you can see.\n" + "Shadows conceal more than they reveal.\n"
 								+ "The path forward is hidden in plain sight."));
 				items.add(new Potion("health potion", "A potion that replenishes your health"));
+		        items.add(new Weapon("Sword", "A solid weapon.", 10, 0, 15));
+		        items.add(new Armor("Chestplate", "Protection from potential danger", 5, 15));
 				objects.add("door");
 
 				String roomDescription = "You awaken on the cold stone floor of a small, shadowy room.\n"
 						+ " The only light comes from a narrow window high on the wall, casting a faint glow across the room.\n"
 						+ "As you sit up, you notice a simple wooden bench against one wall and a tattered piece of paper resting on it.\n"
+						+ "There is also a sword, a chestplate, and a health potion on the floor, which you should pick up in order to protect yourself.\n"
 						+ "The air is heavy, and a deep silence fills the room.\n"
-						+ "A sturdy-looking door stands opposite you, closed tight.\n"
+						+ "An old door stands opposite you, with who knows what on the other side.\n"
 						+ "To see a list of available commands type \"help\"";
 				Room room1 = new BeginnerRoom(roomDescription, roomCommands, items, objects);
 				roomList[i] = room1;
@@ -175,8 +178,8 @@ public class GameManager {
 	public static void main(String[] args) {
 		Room[] roomList = setUpRooms(); // Sets up rooms with items, objects, and commands
 		ArrayList<Item> inventory = new ArrayList<Item>(); // Player's starting inventory
-		Weapon wep1 = new Weapon("Weapon 1", "A weapon", 5, 80, 10);
-        Armor arm1 = new Armor("Armor 1", "A piece of armor", 3, 10);
+		Weapon wep1 = new Weapon("No Weapon", "A weapon", 0, 0, 0);
+        Armor arm1 = new Armor("No Armor", "A piece of armor", 0, 0);
         inventory.add(wep1);
         inventory.add(arm1);
 		Player player = new Player("Name", 20, inventory, roomList); // Create player character
