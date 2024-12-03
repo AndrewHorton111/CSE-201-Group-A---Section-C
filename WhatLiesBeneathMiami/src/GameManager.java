@@ -60,11 +60,11 @@ public class GameManager {
                                 + "The path forward is hidden in plain sight."));
                 items.add(new Weapon("Sword", "A solid weapon.", 10, 0, 15));
                 items.add(new Armor("Chestplate", "Protection from potential danger", 5, 15));
-                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 15, 2));
+                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 30, 2));
                 objects.add("door");
 
                 String roomDescription = "You awaken on the cold stone floor of a small, shadowy room.\n"
-                        + " The only light comes from a narrow window high on the wall, casting a faint glow across the room.\n"
+                        + "The only light comes from a narrow window high on the wall, casting a faint glow across the room.\n"
                         + "As you sit up, you notice a simple wooden bench against one wall and a tattered piece of paper resting on it.\n"
                         + "There is also a sword, a chestplate, and a health potion on the floor, which you should pick up in order to protect yourself.\n"
                         + "The air is heavy, and a deep silence fills the room.\n"
@@ -115,7 +115,9 @@ public class GameManager {
                 roomList[i] = room3;
                 break;
             case 3:
-                roomDescription = "This is the wordle room";
+                roomDescription = "As you enter the next room, you see a large, old, screen up against the wall.\n"
+                		+ "It seems that you will have to solve this puzzle in order to move on.\n"
+                		+ "There's not much direction on the game, so you will have to figure it out as you go!\n";
                 Room room4 = new PuzzleRoom(roomDescription, roomCommands, items, objects);
                 roomList[i] = room4;
                 break;
@@ -142,7 +144,7 @@ public class GameManager {
                 roomCommands.add("take");
                 items.add(new Weapon("Axe", "A strong and powerful weapon", 20, 0, 25));
                 items.add(new Armor("Boots", "Boots that are have high damage reduction and high mobility", 12, 30));
-                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 15, 3));
+                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 30, 3));
                 Room room6 = new TreasureRoom(roomDescription, roomCommands, items, objects);
                 roomList[i] = room6;
                 break;
@@ -210,7 +212,7 @@ public class GameManager {
         System.out.println("What is your name adventurer?");
         System.out.print("> ");
         String playerName = scan.nextLine();
-        Player player = new Player(playerName, 30, inventory, roomList); // Create player character
+        Player player = new Player(playerName, 40, inventory, roomList); // Create player character
 
         System.out.println("Welcome to 'What Lies Beneath Miami!\n\n"
                 + "The objective of the game is to beat each challenge in each new room you enter.\n"
@@ -278,7 +280,10 @@ public class GameManager {
         finalBR.run(commandHandler, player, enemy3);
 
         // The epilogue to the story, wrapping up the story and the game.
-        System.out.println("You escape the dungeon and save Miami. Yippie :)");
+        System.out.println("After The Crawdaddy takes its last breath, two magic goldfish fall from the sky.\n"
+        		+ "They lead you out a secret door, back above ground."
+        		+ "You have accomplished your mission!\n"
+        		+ "YOU WIN! :)");
     }
 }
 

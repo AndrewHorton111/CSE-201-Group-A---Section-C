@@ -24,7 +24,8 @@ public class PuzzleRoom extends Room {
     }
     
     public void run(CommandHandler ch) {
-        wordle();
+    	System.out.println(roomDescription);
+    	wordle();
     }
 
     public void wordle() {
