@@ -280,7 +280,7 @@ public class GameManager {
         finalBR.run(commandHandler, player, enemy3);
 
         // The epilogue to the story, wrapping up the story and the game.
-        System.out.println("After The Crawdaddy takes its last breath, two magic goldfish fall from the sky.\n"
+        System.out.println("\nAfter The Crawdaddy takes its last breath, two magic goldfish fall from the sky.\n"
         		+ "They lead you out a secret door, back above ground."
         		+ "You have accomplished your mission!\n"
         		+ "YOU WIN! :)");

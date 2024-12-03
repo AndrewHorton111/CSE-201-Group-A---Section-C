@@ -79,7 +79,7 @@ public class FinalBossRoom extends Room {
             System.exit(0);
             
         } else {
-            System.out.println("You have defeated The Crawdaddy and are able to move out of the dungeon!");
+            System.out.println("You have defeated The Crawdaddy!");
         }
     }
 }

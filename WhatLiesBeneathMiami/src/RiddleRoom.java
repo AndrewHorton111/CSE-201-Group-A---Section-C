@@ -38,7 +38,7 @@ public class RiddleRoom extends Room {
         while (running) {
             // print the character indicating user input and prepare to receive input
             System.out.println(riddles.get(key));
-            System.out.println("> ");
+            System.out.print("> ");
             String input = in.nextLine().trim();
             // check if the user command is a valid input
             if (CommandHandler.checkInput(roomCommands, input)) {
@@ -47,8 +47,7 @@ public class RiddleRoom extends Room {
                 // common commands using the CommandHandler class.
                 switch (input) {
                 case "answer":
-                    answer(key);
-                    running = false;
+                    running = answer(key);
                     break;
                 case "hint":
                     hint(key);
@@ -64,7 +63,7 @@ public class RiddleRoom extends Room {
     /**
      * Used for answering the riddle
      */
-    private static void answer(int key) {
+    private static boolean answer(int key) {
         //  boolean firstGuessCorrect = false;
         HashMap<Integer, String> riddleAnswers = riddleAnswers();
         Scanner in = new Scanner(System.in);
@@ -74,8 +73,10 @@ public class RiddleRoom extends Room {
         if (answer.equalsIgnoreCase(riddleAnswers.get(key))) {
             System.out.println("Congratulations adventurer, you have answered my riddle\n"
                     + "You may now move onto the next challenge");
+            return false;
         } else {
             System.out.println("Incorrect Answer, Try again");
+            return true;
         }
         
     }
