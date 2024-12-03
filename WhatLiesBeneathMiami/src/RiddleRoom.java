@@ -59,7 +59,6 @@ public class RiddleRoom extends Room {
                 }
             }
         }
-        in.close();
     }
     
     /**
@@ -79,7 +78,6 @@ public class RiddleRoom extends Room {
             System.out.println("Incorrect Answer, Try again");
         }
         
-        in.close();
     }
     
     /**

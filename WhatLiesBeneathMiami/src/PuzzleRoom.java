@@ -33,8 +33,8 @@ public class PuzzleRoom extends Room {
 
         while (true) {
             System.out.print("Enter your word: ");
-            guessWord = kb.nextLine().toUpperCase();
-
+            guessWord = kb.nextLine();
+            
             if (guessWord.length() != 5) {
                 System.out.println("The length of the word must be five!" + " Try again!");
             } else if (guessWord.equals(TARGET_WORD)) {
