@@ -33,7 +33,7 @@ public class PuzzleRoom extends Room {
 
         while (true) {
             System.out.print("Enter your word: ");
-            guessWord = kb.nextLine();
+            guessWord = kb.nextLine().toUpperCase();
             
             if (guessWord.length() != 5) {
                 System.out.println("The length of the word must be five!" + " Try again!");
@@ -98,27 +98,33 @@ public class PuzzleRoom extends Room {
     public String checkWord(String word) {
         System.out.printf("Try #%d (%s) : \n", tryCount, word);
         StringBuilder b = new StringBuilder();
+        
+        // Iterate through each character of the word
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
 
-            if (isCharacterInWord(c)) {
-                if (TARGET_WORD.charAt(i) == c) {
-                    // STRING BUILDER: GREEN
-                    b.append(ANSI_GREEN + c + ANSI_RESET);
-                } else {
-                    // STRING BUILDER: YELLOW
-                    b.append(ANSI_YELLOW + c + ANSI_RESET);
-                }
+            if (TARGET_WORD.charAt(i) == c) {
+                // If the character matches the target word at the same position (green)
+                b.append(ANSI_GREEN + c + ANSI_RESET);
+                //System.out.println("Green match: " + c);  // Debugging output
+            } else if (isCharacterInWord(c)) {
+                // If the character exists in the word but not in the correct position (yellow)
+                b.append(ANSI_YELLOW + c + ANSI_RESET);
+                //System.out.println("Yellow match: " + c);  // Debugging output
             } else {
-                // STRING BUILDER: WHITE
+                // If the character doesn't exist in the word at all (normal)
                 b.append(c);
+                //System.out.println("Normal character: " + c);  // Debugging output
             }
         }
-        tryCount++;
-        System.out.println();
-        return b.toString();
-
+        tryCount++; // Increment the try count
+        System.out.println(); // Move to the next line
+        System.out.println("Final output: " + b.toString());  // Debugging output
+        return b.toString(); // Return the colored string
     }
+
+
+
 
     public boolean isCharacterInWord(char c) {
         for (int i = 0; i < TARGET_WORD.length(); i++) {
