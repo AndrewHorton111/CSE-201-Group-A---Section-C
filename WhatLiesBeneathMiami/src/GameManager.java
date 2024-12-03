@@ -60,7 +60,7 @@ public class GameManager {
                                 + "The path forward is hidden in plain sight."));
                 items.add(new Weapon("Sword", "A solid weapon.", 10, 0, 15));
                 items.add(new Armor("Chestplate", "Protection from potential danger", 5, 15));
-                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 30, 2));
+                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 25, 2));
                 objects.add("door");
 
                 String roomDescription = "You awaken on the cold stone floor of a small, shadowy room.\n"
@@ -142,9 +142,9 @@ public class GameManager {
                 roomCommands.add("objects");
                 roomCommands.add("examine");
                 roomCommands.add("take");
-                items.add(new Weapon("Axe", "A strong and powerful weapon", 20, 0, 25));
+                items.add(new Weapon("Axe", "A strong and powerful weapon", 25, 0, 25));
                 items.add(new Armor("Boots", "Boots that are have high damage reduction and high mobility", 12, 30));
-                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 30, 3));
+                items.add(new Potion("Health potion", "A potion that replenishes your health", "health", 25, 3));
                 Room room6 = new TreasureRoom(roomDescription, roomCommands, items, objects);
                 roomList[i] = room6;
                 break;
@@ -275,7 +275,7 @@ public class GameManager {
         ArrayList<String> enemyDialog3 = new ArrayList<String>();
         enemyDialog3.add("You'll never leave this dungeon!");
         enemyDialog3.add("You're going to have to dropout from life!");
-        Enemy enemy3 = new Enemy("The Crawdaddy", 100, enemyInventory3, enemyDialog3);
+        Enemy enemy3 = new Enemy("The Crawdaddy", 80, enemyInventory3, enemyDialog3);
         FinalBossRoom finalBR = (FinalBossRoom) roomList[6];
         finalBR.run(commandHandler, player, enemy3);
 
