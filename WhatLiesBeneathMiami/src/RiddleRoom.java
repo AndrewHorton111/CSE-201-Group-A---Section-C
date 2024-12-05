@@ -133,7 +133,7 @@ public class RiddleRoom extends Room {
         HashMap<Integer, String> answers = new HashMap<>();
         answers.put(1, "Footsteps");
         answers.put(2, "Feather");
-        answers.put(3,  "A human");
+        answers.put(3,  "Human");
         return answers;
     }
 
